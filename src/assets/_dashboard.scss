@@ -70,6 +70,16 @@ body {
   padding-top: 133px; /* Space for fixed navbar */
 }
 
+.table {
+  font-size: 16px;
+}
+.icon {
+  cursor: pointer;
+}
+.modal-title {
+  letter-spacing: 1px;
+}
+
 @media (min-width: 768px) {
   [role="main"] {
     padding-top: 48px; /* Space for fixed navbar */
@@ -95,15 +105,4 @@ body {
 }
 .navbar a {
   cursor: pointer;
-}
-
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }

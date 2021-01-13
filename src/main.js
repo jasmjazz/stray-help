@@ -10,6 +10,8 @@ import jquery from 'jquery';
 
 import App from './App';
 import router from './router';
+import './bus';
+import currencyFilter from './filters/currency';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
@@ -17,6 +19,7 @@ axios.defaults.withCredentials = true;
 window.$ = jquery;
 
 Vue.component('Loading', Loading);
+Vue.filter('currency', currencyFilter);
 
 /* eslint-disable no-new */
 new Vue({
