@@ -14,7 +14,8 @@
             隨著收容的數量急遽上升，<br/>
             能力有限的愛爸愛媽需要你我的幫助。
           </p>
-          <h4>『集食』給予最實質的幫助</h4>
+          <h4>『集食』給予最實質的幫助<i class="fas fa-paw"
+            style="padding: 5px; font-size: 25px; transform:rotate(20deg)"></i></h4>
         </div>
       </div>
     </div>
@@ -24,7 +25,7 @@
         <div class="card-group col-md-4 mb-4"
           v-for="item in allProducts.slice(firstProduct, firstProduct + countProduct)"
           :key="item.id">
-          <div class="card border-0 shadow-sm" @click="getProduct(item.id)">
+          <div class="card border-0 shadow-sm" @click="$router.push(`detail/${item.id}`)">
             <div style="height: 260px;
               background-size: cover;"
               :style="{backgroundImage: `url(${item.imageUrl})`}">
@@ -46,7 +47,7 @@
             </div>
             <div class="card-footer d-flex" style="background-color: #494949">
               <h5 style="color: #ffffff; letter-spacing: 1px; padding-top: 4px">
-                NT{{ item.price | currency }}
+                NT {{ item.price | currency }}
               </h5>
               <button type="button" class="btn btn-outline-light ml-auto">
                 <i class="fas fa-spinner fa-spin"></i>
@@ -232,6 +233,12 @@ export default {
   border-right: .06em solid;
   animation: typing 5s steps(15) infinite, caret 1s steps(1) infinite;
 }
+
+.card:hover {
+  cursor: pointer;
+  transform: translate(0, -10px);
+}
+
 @media (max-width: 480px) {
   .content-left {
     border-bottom-style: 1px solid;

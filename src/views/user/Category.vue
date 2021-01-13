@@ -1,16 +1,17 @@
 <template>
   <div class="container">
+    <loading :active.sync="isLoading"></loading>
     <div class="row mt-4">
       <div class="col-sm-4">
-        <ul class="nav">
+        <ul class="nav" style="font-size: 16px">
           <li class="nav-item">
-            <router-link class="nav-link active" to="/">首頁</router-link>
+            <router-link class="nav-link" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <span class="nav-link active">分類</span>
+            <span class="nav-link active" style="color: #f57f17">分類</span>
           </li>
         </ul>
-        <ul class="list-group mt-2" style="padding-top: 4px">
+        <ul class="list-group mt-2">
           <li class="list-group-item" @click="getCategory(3)"
             :class="{ active: category === 3 }">全部</li>
           <li class="list-group-item" @click="getCategory(0)"
@@ -26,7 +27,7 @@
           <div class="card-group col-md-6 mb-4"
             v-for="item in products.slice(firstProduct, firstProduct + countProduct)"
             :key="item.id">
-            <div class="card border-1 shadow-sm" @click="getProduct(item.id)">
+            <div class="card border-1 shadow-sm" @click="$router.push(`detail/${item.id}`)">
               <div style="height: 250px; background-size: cover;"
                 :style="{backgroundImage: `url(${item.imageUrl})`}">
             </div>
@@ -47,7 +48,7 @@
             </div>
             <div class="card-footer d-flex" style="background-color: #494949">
               <h5 style="color: #ffffff; letter-spacing: 1px; padding-top: 4px">
-                NT{{ item.price | currency }}
+                NT {{ item.price | currency }}
               </h5>
               <button type="button" class="btn btn-outline-light ml-auto">
                 <i class="fas fa-spinner fa-spin"></i>
@@ -78,6 +79,7 @@ export default {
   name: 'Category',
   data() {
     return {
+      isLoading: false,
       allProducts: [],
       countProduct: 6,
       currentPage: 1,
@@ -89,10 +91,12 @@ export default {
     getAllProducts(page = 1) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
       const vm = this;
+      vm.isLoading = true;
       vm.$http.get(api).then((response) => {
         console.log(response.data);
         vm.allProducts = response.data.products;
         vm.products = response.data.products;
+        vm.isLoading = false;
       });
     },
     getCategory(num) {
@@ -103,15 +107,6 @@ export default {
         vm.products = vm.allProducts.filter(item => item.category === num);
       }
       vm.category = num;
-    },
-    getProduct(id) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
-      const vm = this;
-      vm.isLoading = true;
-      vm.$http.get(api).then((response) => {
-        console.log(response);
-        vm.isLoading = false;
-      });
     },
     setPage(page) {
       if (page <= 0 || page > this.totalPage) {
@@ -135,6 +130,10 @@ export default {
 </script>
 
 <style scoped>
+.card:hover {
+  cursor: pointer;
+  transform: translate(0, -10px);
+}
 .list-group-item {
   cursor: pointer;
   font-size: 16px;

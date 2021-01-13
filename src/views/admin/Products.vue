@@ -120,7 +120,7 @@
                   <div class="form-group col-md-6">
                     <label for="unit">單位</label>
                     <select class="form-control" v-model="tempProduct.unit" disabled>
-                      <option :value='0'>包</option>
+                      <option :value='0'>盒</option>
                       <option :value='1'>罐</option>
                       <option :value='2'>袋</option>
                     </select>

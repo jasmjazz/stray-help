@@ -19,6 +19,11 @@ export default new VueRouter({
           name: 'Category',
           component: () => import('../views/user/Category.vue'),
         },
+        {
+          path: 'detail/:id',
+          name: 'Detail',
+          component: () => import('../views/user/Detail.vue'),
+        },
       ],
     },
     {
