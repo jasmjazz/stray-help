@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="fixed-bottom arrow"><img src="../../assets/icon/arrow.svg"></div>
     <footer class="container-fluid footer mt-4">
       <div class="row">
         <div class="col footer-text">
@@ -14,3 +15,20 @@
     </footer>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+  mounted() {
+    // arrow up
+    $('.fixed-bottom img').click(() => {
+      $('html, body').animate({
+        scrollTop: 0,
+      }, 1000);
+    });
+  },
+};
+</script>

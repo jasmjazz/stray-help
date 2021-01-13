@@ -6,9 +6,20 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
-      path: '/', // 對應的虛擬路徑
-      name: 'Home', // 元件呈現的名稱
-      component: () => import('../views/Home.vue'), // 對應的元件
+      path: '', // 對應的虛擬路徑
+      component: () => import('../views/Front.vue'), // 對應的元件
+      children: [ // 巢狀路徑
+        {
+          path: '/',
+          name: 'Home',
+          component: () => import('../views/user/Home.vue'),
+        },
+        {
+          path: 'category',
+          name: 'Category',
+          component: () => import('../views/user/Category.vue'),
+        },
+      ],
     },
     {
       path: '/login',

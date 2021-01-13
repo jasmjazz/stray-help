@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-light navbar-fixed-top">
-      <router-link class="nav-link" to="/home">
+      <router-link class="nav-link" to="/">
         <img src="../../assets/icon/logo.svg" class="d-inline-block logo" alt="logo">
         <span class="name">Stray Help</span>
       </router-link>
