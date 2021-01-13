@@ -1,0 +1,116 @@
+body {
+  cursor: default;
+}
+// Header
+.navbar {
+  background-color: #aeaeae;
+  font-family: Papyrus;
+  font-weight: bolder;
+  position: relative;
+}
+.navbar .logo {
+  width: 25px;
+  height: 25px;
+  vertical-align: text-bottom;
+  margin-right: 6px;
+  font-size: 18px;
+}
+.navbar .name {
+  font-size: 20px;
+  color: #000000;
+}
+.navbar .user {
+  text-align: right;
+  color: #000000;
+  font-size: 18px;
+  line-height: 18px;
+}
+.navbar .cart {
+  position: absolute;
+  margin: auto;
+  top: 30%;
+  right: 35px;
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 700px;
+}
+.carousel-box {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 94%;
+  height: 92%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-style: double;
+  border-width: 6px;
+  border-color: #bcbcbc;
+  font-weight: bolder;
+  font-size: 45px;
+}
+@media (max-width: 462px) {
+  .carousel-item {
+    width: 100%;
+    height: auto;
+  }
+  .carousel-box {
+    top: 4%;
+    left: 7%;
+    transform: translate(-4%);
+    height: 250px;
+  }
+}
+
+.carousel-first {
+  position: absolute;
+  margin: 0;
+  top: 75%;
+  left: 40%;
+  transform: translate(-75%, -40%);
+  color: #000000;
+  text-align: left;
+}
+.carousel-second {
+  position: absolute;
+  margin: 0;
+  top: 66%;
+  right: 6%;
+  color: #ffffff;
+  text-align: right;
+}
+
+// card
+
+.card:hover {
+  cursor: pointer;
+  transform: translate(0, -10px);
+}
+
+// Footer
+.footer {
+  background-color: #e0e0e0;
+  font-family: Papyrus;
+  font-weight: bolder;
+}
+.footer-text {
+  margin-left: 40px;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+.footer-icon img {
+  position: absolute;
+  top: 25px;
+  right: 80px;
+  width: 40px;
+  height: 40px;
+}
+.footer .fb {
+  margin-right: 50px;
+}
