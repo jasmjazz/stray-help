@@ -3,29 +3,54 @@
     <!--content-->
     <div class="container-fluid content">
       <div class="row">
-        <div class="col-sm-6 box content-left">
-          <h2>浪愛<br/>
-          不流浪</h2>
+        <div class="col-md-12 col-lg-6 content-left">
+          <h2 style="color: #ffffff; line-height: 55px;
+            letter-spacing: 6px; font-weight: bold">
+            公告
+          </h2>
+          <h5 style="color: #ffc107; line-height: 40px; letter-spacing: 1px">
+            <i class="fas fa-exclamation-triangle"></i>
+            165防詐騙宣導<br/>
+            提醒您提高警覺，疑似詐騙請撥打165求證
+          </h5>
+          <h5 style="color: #f5f5f5; line-height: 40px; letter-spacing: 1px">
+            ※若需園區簽收單，請加入 LINE@ 或於 FB 粉絲團洽詢<br/>
+            ※公司行號、個人慈愛捐助需要報稅者，請與我們聯繫
+          </h5>
+          <h4 style="line-height: 40px; margin-top: 15px; letter-spacing: 2px">
+            <span style="color: #ffffff">點擊下方物資</span><br/>
+            <span style="color: red">立即愛心捐糧</span>
+          </h4>
         </div>
-        <div class="col-sm-6 box content-right">
-          <p>全省有許多流浪貓狗園區面臨著缺糧的問題，<br/>
-            愛爸和愛媽給了流浪貓狗一個家，<br/>
-            除了讓牠們免於受苦、受餓，也大幅減少了社會環境的問題。<br/>
-            隨著收容的數量急遽上升，<br/>
-            能力有限的愛爸愛媽需要你我的幫助。
-          </p>
-          <h4>『集食』給予最實質的幫助<i class="fas fa-paw"
-            style="padding: 5px; font-size: 25px; transform:rotate(20deg)"></i></h4>
+        <div class="col-md-12 col-lg-6 content-right">
+          <div class="card border-0">
+            <div class="card-body">
+              <p>全省有許多流浪貓狗園區面臨缺糧的問題，<br/>
+                愛爸和愛媽給了流浪貓狗一個家，<br/>
+                除了讓牠們免於受苦、受餓，<br/>
+                也大幅減少了社會環境的問題。<br/>
+                隨著收容的數量急遽上升，<br/>
+                能力有限的愛爸愛媽需要你我的幫助。
+              </p>
+              <h4 class="mt-4">『集食』給予最實質的幫助
+                <i class="fas fa-paw"
+                  style="font-size: 30px; transform:rotate(20deg);
+                    vertical-align: top">
+                </i>
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <!--ProductList-->
     <div class="container">
       <div class="row mt-5">
-        <div class="card-group col-md-4 mb-4"
+        <div class="card-group col-md-6 col-lg-4 mb-4"
           v-for="item in allProducts.slice(firstProduct, firstProduct + countProduct)"
           :key="item.id">
-          <div class="card border-0 shadow-sm" @click="$router.push(`detail/${item.id}`)">
+          <div class="card border-0 product-card"
+            @click="$router.push(`detail/${item.id}`)">
             <div style="height: 260px;
               background-size: cover;"
               :style="{backgroundImage: `url(${item.imageUrl})`}">
@@ -51,7 +76,7 @@
               </h5>
               <button type="button" class="btn btn-outline-light ml-auto">
                 <i class="fas fa-spinner fa-spin"></i>
-                給予幫助
+                捐助糧食
               </button>
             </div>
           </div>
@@ -73,7 +98,7 @@
     <div class="container" style="margin-top: 30px">
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-4">流浪貓狗溫飽平台
+          <h1 class="display-4">流浪貓狗助糧平台
             <span class="badge badge-warning tag-2">宗旨</span>
           </h1>
           <hr class="my-4">
@@ -116,15 +141,6 @@ export default {
         console.log(response.data);
         vm.allProducts = response.data.products;
         vm.pagination = response.data.pagination;
-      });
-    },
-    getProduct(id) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
-      const vm = this;
-      vm.isLoading = true;
-      vm.$http.get(api).then((response) => {
-        console.log(response);
-        vm.isLoading = false;
       });
     },
     setPage(page) {
@@ -186,80 +202,7 @@ export default {
   font-size: 22px;
   line-height: 32px;
 }
-.content {
-  background-color: #e0e0e0;
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
 
-.content-left {
-  position: relative;
-}
-.content-left h2 {
-  position: absolute;
-  margin: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  writing-mode: vertical-lr;
-  letter-spacing: 8px;
-  font-size: 56px;
-  line-height: 60px;
-}
-.content-right p{
-  letter-spacing: 3px;
-  font-size: 22px;
-  line-height: 36px;
-}
-/*打字機效果*/
-@keyframes typing {
-  from{
-    width: 0;
-  }
-}
-@keyframes caret {
-  50%{
-    border-right-color: transparent;
-  }
-}
-.content-right h4 {
-  font-size: 30px;
-  font-weight: bolder;
-  line-height: 40px;
-  letter-spacing: 5px;
-  width: 17.5em;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: .06em solid;
-  animation: typing 5s steps(15) infinite, caret 1s steps(1) infinite;
-}
-
-.card:hover {
-  cursor: pointer;
-  transform: translate(0, -10px);
-}
-
-@media (max-width: 480px) {
-  .content-left {
-    border-bottom-style: 1px solid;
-    border-bottom-color: #ffffff;
-  }
-  .box h2 {
-    font-size: 40px;
-    line-height: 52px;
-  }
-  .box p {
-    letter-spacing: 1px;
-    font-size: 18px;
-    line-height: 26px;
-  }
-}
-
-@media (max-width: 480px) {
-  .content .box {
-    height: 200px;
-  }
-}
 .iframe {
   margin-top: 30px;
 }

@@ -103,9 +103,9 @@
                     <label for="category">分類</label>
                     <select class="form-control" v-model="tempProduct.category"
                       @change="select">
-                      <option :value='0'>主食</option>
-                      <option :value='1'>副食</option>
-                      <option :value='2'>零食</option>
+                      <option :value= 0>主食</option>
+                      <option :value= 1>副食</option>
+                      <option :value= 2>零食</option>
                     </select>
                   </div>
                 </div>
@@ -120,9 +120,9 @@
                   <div class="form-group col-md-6">
                     <label for="unit">單位</label>
                     <select class="form-control" v-model="tempProduct.unit" disabled>
-                      <option :value='0'>盒</option>
-                      <option :value='1'>罐</option>
-                      <option :value='2'>袋</option>
+                      <option :value= 0 >盒</option>
+                      <option :value= 1>罐</option>
+                      <option :value= 2>袋</option>
                     </select>
                   </div>
                 </div>

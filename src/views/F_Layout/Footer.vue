@@ -4,7 +4,7 @@
     <footer class="container-fluid footer mt-4">
       <div class="row">
         <div class="col footer-text">
-          <h4>Contact Us</h4>
+          <h5>Contact Us</h5>
           <p>Tel：0809-098-199</p>
         </div>
         <div class="col footer-icon">
