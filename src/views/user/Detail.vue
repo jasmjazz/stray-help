@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Alert></Alert>
     <loading :active.sync="isLoading" loader="dots"></loading>
     <div class="row mt-4">
       <div class="col-12">
@@ -53,11 +54,11 @@
               <div class="card-body">
                 <h4 class="card-title price">
                   NT {{ product.price | currency }} /
-                  <span v-if="product.unit === 0">盒</span>
+                  <span v-if="product.unit === 0">包</span>
                   <span v-else-if="product.unit === 1">罐</span>
                   <span v-else>袋</span>
                 </h4>
-                <select class="form-control mt-4" v-model="product.num">
+                <select class="form-control mt-4" v-model="num">
                   <option :value="num" v-for="num in 10" :key="num">
                     {{ num }}
                   </option>
@@ -68,7 +69,7 @@
                     一份糧食，一份希望
                   </h6>
                   <button type="button" class="btn btn-primary ml-auto"
-                    @click="addCart(product.id, product.num)">
+                    @click="addCart(product, num)">
                     <i v-if="loadingItem"
                       class="fas fa-spinner fa-spin">
                     </i>
@@ -90,6 +91,8 @@
 </template>
 
 <script>
+import Alert from '../../components/AlertMessage';
+
 export default {
   data() {
     return {
@@ -97,7 +100,12 @@ export default {
       productId: '',
       product: {},
       loadingItem: false,
+      cart: [],
+      num: 1,
     };
+  },
+  components: {
+    Alert,
   },
   methods: {
     getProduct() {
@@ -106,27 +114,48 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${vm.productId}`;
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
-        console.log(response.data.product);
         vm.product = response.data.product;
         vm.isLoading = false;
       });
     },
-    addCart(id, qty = 1) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
+    getCart() {
       const vm = this;
-      vm.loadingItem = true;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      vm.$http.post(api, { data: cart }).then((response) => {
-        console.log(response.data);
-        vm.loadingItem = false;
-      });
+      vm.cart = JSON.parse(localStorage.getItem('cart')) || [];
+    },
+    addCart(product, qty) {
+      const vm = this;
+      let cartIndex = -1; // 因陣列索引由0開始，不可設置為0
+      vm.getCart();
+      if (vm.cart.length > 0) { // 購物車內有產品
+        vm.cart.forEach((item, index) => {
+          if (item.id === product.id) { // 品項已加入過
+            cartIndex = index;
+          }
+        });
+      }
+      // 判斷品項是否重複加入
+      if (cartIndex === -1) { // NO
+        const total = parseInt((product.price * qty), 10);
+        vm.$set(product, 'qty', qty);
+        vm.$set(product, 'total', total);
+        vm.cart.push(product); // 將此品項加入購物車
+      } else { // Yes
+        // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
+        const tempProduct = { ...vm.cart[cartIndex] };
+        tempProduct.qty += qty;
+        tempProduct.total = parseInt((product.price * tempProduct.qty), 10);
+        // 使用cartIndex找到此品項在購物車中的位置並刪除
+        vm.cart.splice(cartIndex, 1);
+        vm.cart.push(tempProduct); // 由tempProduct建立new data
+      }
+      localStorage.setItem('cart', JSON.stringify(vm.cart));
+      vm.$bus.$emit('message: push', '已加入購物車');
+      vm.getCart();
     },
   },
   created() {
     this.getProduct();
+    this.getCart();
   },
 };
 </script>

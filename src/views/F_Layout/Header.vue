@@ -32,62 +32,106 @@
         </div>
       </div>
     </div>
+    <!--empty-->
+    <div v-if="cart.length <= 0" class="modal fade" id="cartModal" tabindex="-1"
+      role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"
+              style="margin-left: 42%; font-weight: bold; letter-spacing: 1px">
+              糧食車
+            </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="text-align: center">
+            <h4>還沒有選擇糧食哦！</h4>
+          </div>
+          <div class="modal-footer">
+            <router-link class="nav-link" :to="{ name: 'Category' }">
+              <button type="button" class="btn btn-dark btn-block" data-dismiss="modal"
+                style="letter-spacing: 1px">
+                去看看
+              </button>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--cartModal-->
-    <div class="modal fade" id="cartModal" tabindex="-1"
+    <div v-if="cart.length > 0" class="modal fade" id="cartModal" tabindex="-1"
       role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">已選糧食</h5>
+            <h4 class="modal-title" id="exampleModalLabel"
+              style="margin-left: 45%; font-weight: bold; letter-spacing: 1px">
+              糧食車
+            </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <table class="table" >
+            <table class="table">
               <thead>
                 <th width="10%"></th>
-                <th width="20%">種類</th>
-                <th width="30%">品名</th>
+                <th width="15%">分類</th>
+                <th width="20%">品名</th>
+                <th width="12%">價格</th>
+                <th width="9%"></th>
                 <th width="20%">數量</th>
-                <th width="5%"></th>
-                <th width="15%">價格</th>
+                <th width="14%">小計</th>
               </thead>
               <tbody>
-                <tr v-for="item in cart.carts" :key="item.id">
+                <tr v-for="item in cart" :key="item.id">
                   <td class="align-middle">
                     <a class="icon" @click.prevent="delCart(item.id)">
                       <i class="fas fa-trash" style="font-size: 20px"></i>
                     </a>
                   </td>
-                  <td class="align-middle" v-if="item.product.category === 0">
-                    <h5><span class="badge badge-dark">主食</span></h5>
+                  <td class="align-middle" v-if="item.category === 0">
+                    <h5>
+                      <span class="badge badge-dark">主食</span>
+                    </h5>
                   </td>
-                  <td class="align-middle" v-else-if="item.product.category === 1">
-                    <h5><span class="badge badge-warning">副食</span></h5>
+                  <td class="align-middle" v-else-if="item.category === 1">
+                    <h5>
+                      <span class="badge badge-warning">副食</span>
+                    </h5>
                   </td>
-                  <td class="align-middle" v-else><h5>
-                    <span class="badge badge-info">零食</span></h5>
+                  <td class="align-middle" v-else>
+                    <h5>
+                      <span class="badge badge-info">零食</span>
+                    </h5>
                   </td>
                   <td class="align-middle">
-                    {{ item.product.title }}
+                    {{ item.title }}
                   </td>
-                  <td class="align-middle" style="padding-left: 22px">{{ item.qty }}</td>
+                  <td class="align-middle text-right">
+                    {{ item.price | currency }}
+                  </td>
                   <td></td>
-                  <td class="align-middle text-right">{{ item.final_total | currency }}</td>
+                  <td class="align-middle" style="padding-left: 23px">
+                    {{ item.qty }}
+                  </td>
+                  <td class="align-middle text-right">
+                    {{ item.total | currency }}
+                  </td>
                 </tr>
               </tbody>
               <tfoot>
-                <tr>
-                  <td colspan="5" class="text-right">總計</td>
-                  <td class="text-right">{{ cart.total | currency}}</td>
+                <tr style="font-weight: bold">
+                  <td colspan="6" class="text-right">總計</td>
+                  <td class="text-right">{{ money | currency }}</td>
                 </tr>
               </tfoot>
             </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-dark">捐糧去</button>
+            <button type="button" class="btn btn-dark" style="letter-spacing: 2px">捐糧去</button>
           </div>
         </div>
       </div>
@@ -100,28 +144,31 @@ export default {
   data() {
     return {
       cart: [],
+      money: 0,
     };
   },
   methods: {
     getCart() {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
-      const vm = this;
-      vm.$http.get(api).then((response) => {
-        console.log(response.data);
-        vm.cart = response.data.data;
+      this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+      this.cart.forEach((item) => {
+        this.money += item.total;
       });
     },
     openModal() {
+      this.money = 0;
       this.getCart();
       $('#cartModal').modal('show');
     },
     delCart(id) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
+      console.log(id);
       const vm = this;
-      vm.$http.delete(api).then((response) => {
-        console.log(response.data);
-        vm.getCart();
+      vm.cart.forEach((item, index) => {
+        if (item.id === id) {
+          vm.cart.splice(index, 1);
+        }
       });
+      localStorage.setItem('cart', JSON.stringify(vm.cart));
+      vm.getCart();
     },
   },
   created() {

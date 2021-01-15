@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Alert></Alert>
     <loading :active.sync="isLoading" loader="dots"></loading>
     <div class="row mt-4">
       <div class="col-sm-4 col-sm-12 col-md-12 col-lg-4">
@@ -52,11 +53,7 @@
                   NT {{ item.price | currency }}
                 </h5>
                 <button type="button" class="btn btn-outline-light ml-auto"
-                  style="letter-spacing: 2px"
-                  @click.stop="addCart(item.id)">
-                  <i v-if="status.loadingItem === item.id"
-                    class="fas fa-spinner fa-spin">
-                  </i>
+                  style="letter-spacing: 2px" @click.stop="addCart(item)">
                   捐助糧食
                 </button>
               </div>
@@ -80,6 +77,8 @@
 </template>
 
 <script>
+import Alert from '../../components/AlertMessage';
+
 export default {
   name: 'Category',
   data() {
@@ -88,12 +87,13 @@ export default {
       allProducts: [],
       countProduct: 6,
       currentPage: 1,
-      category: 3,
+      category: 3, // 取得全部分類
       products: [],
-      status: {
-        loadingItem: '',
-      },
+      cart: [],
     };
+  },
+  components: {
+    Alert,
   },
   methods: {
     getAllProducts(page = 1) {
@@ -125,18 +125,39 @@ export default {
       }
       vm.category = num;
     },
-    addCart(id, qty = 1) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
+    getCart() {
       const vm = this;
-      vm.status.loadingItem = id;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      vm.$http.post(api, { data: cart }).then((response) => {
-        console.log(response.data);
-        vm.status.loadingItem = '';
-      });
+      vm.cart = JSON.parse(localStorage.getItem('cart')) || [];
+    },
+    addCart(product, qty = 1) {
+      const vm = this;
+      let cartIndex = -1; // 因陣列索引由0開始，不可設置為0
+      vm.getCart();
+      if (vm.cart.length > 0) { // 購物車內有產品
+        vm.cart.forEach((item, index) => {
+          if (item.id === product.id) { // 品項已加入過
+            cartIndex = index;
+          }
+        });
+      }
+      // 判斷品項是否重複加入
+      if (cartIndex === -1) { // NO
+        const total = parseInt((product.price * qty), 10);
+        vm.$set(product, 'qty', qty);
+        vm.$set(product, 'total', total);
+        vm.cart.push(product); // 將此品項加入購物車
+      } else { // Yes
+        // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
+        const tempProduct = { ...vm.cart[cartIndex] };
+        tempProduct.qty += qty;
+        tempProduct.total = parseInt((product.price * tempProduct.qty), 10);
+        // 使用cartIndex找到此品項在購物車中的位置並刪除
+        vm.cart.splice(cartIndex, 1);
+        vm.cart.push(tempProduct); // 由tempProduct建立new data
+      }
+      localStorage.setItem('cart', JSON.stringify(vm.cart));
+      vm.$bus.$emit('message: push', '已加入購物車');
+      vm.getCart();
     },
     setPage(page) {
       if (page <= 0 || page > this.totalPage) {
@@ -155,6 +176,7 @@ export default {
   },
   created() {
     this.getAllProducts();
+    this.getCart();
   },
 };
 </script>

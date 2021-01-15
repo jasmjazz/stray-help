@@ -74,8 +74,8 @@
               <h5 style="color: #ffffff; letter-spacing: 1px; padding-top: 4px">
                 NT {{ item.price | currency }}
               </h5>
-              <button type="button" class="btn btn-outline-light ml-auto">
-                <i class="fas fa-spinner fa-spin"></i>
+              <button type="button" class="btn btn-outline-light ml-auto"
+                @click.stop="addCart(item)">
                 捐助糧食
               </button>
             </div>
@@ -124,6 +124,7 @@
 
 <script>
 export default {
+  name: 'Home',
   data() {
     return {
       allProducts: [],
@@ -131,6 +132,7 @@ export default {
       pagination: {},
       countProduct: 6,
       currentPage: 1,
+      cart: [],
     };
   },
   methods: {
@@ -149,6 +151,40 @@ export default {
       }
       this.currentPage = page;
     },
+    getCart() {
+      const vm = this;
+      vm.cart = JSON.parse(localStorage.getItem('cart')) || [];
+    },
+    addCart(product, qty = 1) {
+      const vm = this;
+      let cartIndex = -1; // 因陣列索引由0開始，不可設置為0
+      vm.getCart();
+      if (vm.cart.length > 0) { // 購物車內有產品
+        vm.cart.forEach((item, index) => {
+          if (item.id === product.id) { // 品項已加入過
+            cartIndex = index;
+          }
+        });
+      }
+      // 判斷品項是否重複加入
+      if (cartIndex === -1) { // NO
+        const total = parseInt((product.price * qty), 10);
+        vm.$set(product, 'qty', qty);
+        vm.$set(product, 'total', total);
+        vm.cart.push(product); // 將此品項加入購物車
+      } else { // Yes
+        // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
+        const tempProduct = { ...vm.cart[cartIndex] };
+        tempProduct.qty += qty;
+        tempProduct.total = parseInt((product.price * tempProduct.qty), 10);
+        // 使用cartIndex找到此品項在購物車中的位置並刪除
+        vm.cart.splice(cartIndex, 1);
+        vm.cart.push(tempProduct); // 由tempProduct建立new data
+      }
+      localStorage.setItem('cart', JSON.stringify(vm.cart));
+      vm.$bus.$emit('message: push', '糧食已加入購物車');
+      vm.getCart();
+    },
   },
   computed: {
     firstProduct() {
@@ -160,6 +196,7 @@ export default {
   },
   created() {
     this.getAllProducts();
+    this.getCart();
   },
 };
 </script>
