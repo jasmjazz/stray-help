@@ -6,6 +6,10 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
+      path: '*',
+      redirect: '/',
+    },
+    {
       path: '', // 對應的虛擬路徑
       component: () => import('../views/Front.vue'), // 對應的元件
       children: [ // 巢狀路徑
@@ -23,6 +27,21 @@ export default new VueRouter({
           path: 'detail/:id',
           name: 'Detail',
           component: () => import('../views/user/Detail.vue'),
+        },
+        {
+          path: 'checkcart',
+          name: 'CheckCart',
+          component: () => import('../views/user/CheckCart.vue'),
+        },
+        {
+          path: 'userinfo',
+          name: 'UserInfo',
+          component: () => import('../views/user/UserInfo.vue'),
+        },
+        {
+          path: 'ordercheck',
+          name: 'OrderCheck',
+          component: () => import('../views/user/OrderCheck.vue'),
         },
       ],
     },

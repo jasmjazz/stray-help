@@ -95,7 +95,7 @@
       </nav>
     </div>
     <!--Message-->
-    <div class="container" style="margin-top: 30px">
+    <div class="container mt-5">
       <div class="jumbotron">
         <div class="container">
           <h1 class="display-4">流浪貓狗助糧平台
@@ -111,7 +111,7 @@
       </div>
     </div>
     <!--iframe-->
-    <div class="container iframe">
+    <div class="container iframe mt-4">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item"
           src="https://www.youtube.com/embed/l9itdKFvMz4?rel=0&autoplay=1&loop=1&playlist=l9itdKFvMz4"
@@ -140,8 +140,7 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
       const vm = this;
       vm.$http.get(api).then((response) => {
-        console.log(response.data);
-        vm.allProducts = response.data.products;
+        vm.allProducts = response.data.products.filter(item => item.is_enabled === 1);
         vm.pagination = response.data.pagination;
       });
     },
@@ -238,9 +237,5 @@ export default {
 .jumbotron p {
   font-size: 22px;
   line-height: 32px;
-}
-
-.iframe {
-  margin-top: 30px;
 }
 </style>

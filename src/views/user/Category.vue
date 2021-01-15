@@ -102,7 +102,7 @@ export default {
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
         console.log(response.data);
-        vm.allProducts = response.data.products;
+        vm.allProducts = response.data.products.filter(item => item.is_enabled === 1);
         vm.products = response.data.products;
         vm.isLoading = false;
       });

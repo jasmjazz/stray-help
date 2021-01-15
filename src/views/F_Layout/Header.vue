@@ -40,7 +40,7 @@
           <div class="modal-header">
             <h4 class="modal-title" id="exampleModalLabel"
               style="margin-left: 42%; font-weight: bold; letter-spacing: 1px">
-              糧食車
+              集糧盒
             </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -68,7 +68,7 @@
           <div class="modal-header">
             <h4 class="modal-title" id="exampleModalLabel"
               style="margin-left: 45%; font-weight: bold; letter-spacing: 1px">
-              糧食車
+              集糧盒
             </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -131,7 +131,12 @@
             </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-dark" style="letter-spacing: 2px">捐糧去</button>
+            <router-link class="nav-link" :to="{ name: 'CheckCart' }">
+              <button type="button" class="btn btn-dark" data-dismiss="modal"
+                style="letter-spacing: 2px">
+                捐糧去
+              </button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -149,18 +154,20 @@ export default {
   },
   methods: {
     getCart() {
-      this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-      this.cart.forEach((item) => {
-        this.money += item.total;
-      });
+      const vm = this;
+      vm.money = 0;
+      vm.cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (vm.cart.length > 0) {
+        vm.cart.forEach((item) => {
+          vm.money += item.total;
+        });
+      }
     },
     openModal() {
-      this.money = 0;
       this.getCart();
       $('#cartModal').modal('show');
     },
     delCart(id) {
-      console.log(id);
       const vm = this;
       vm.cart.forEach((item, index) => {
         if (item.id === id) {
@@ -168,6 +175,7 @@ export default {
         }
       });
       localStorage.setItem('cart', JSON.stringify(vm.cart));
+      vm.$bus.$emit('message: push', '已刪除糧食');
       vm.getCart();
     },
   },
