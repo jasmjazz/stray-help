@@ -139,12 +139,21 @@ export default {
     Cart,
   },
   methods: {
-    getAllProducts(page = 1) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
+    getAllProducts() {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products/all`;
       const vm = this;
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
         vm.allProducts = response.data.products.filter(item => item.is_enabled === 1);
+        vm.isLoading = false;
+      });
+    },
+    getProducts(page = 1) {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
+      const vm = this;
+      vm.isLoading = true;
+      vm.$http.get(api).then((response) => {
+        console.log(response.data.products);
         vm.pagination = response.data.pagination;
         vm.isLoading = false;
       });
@@ -205,6 +214,7 @@ export default {
   },
   created() {
     this.getAllProducts();
+    this.getProducts();
     this.getCart();
   },
 };
