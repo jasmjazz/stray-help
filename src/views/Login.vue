@@ -4,22 +4,20 @@
       <div class="card">
         <div class="card-body">
           <form class="form-signin" @submit.prevent="signin">
-            <h4>Admin Login</h4>
+            <h4 class="mb-4">
+              <i class="fas fa-paw" style="margin-right: 5px"></i>
+              Admin Login
+            </h4>
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="email" id="inputEmail" class="form-control"
               placeholder="Email address" v-model="user.username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control"
               placeholder="Password" v-model="user.password" required>
-            <div class="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me"> Remember me
-              </label>
-            </div>
-            <button class="btn btn-lg btn-block" type="submit">Sign In</button>
-            <p>
+            <button class="btn btn-lg btn-block mt-5" type="submit">Sign In</button>
+            <p class="mt-2">
               <router-link class="back-home" to="/">
-                back
+                <i class="fas fa-arrow-circle-left" style="margin-right: 5px"></i>Home
               </router-link>
             </p>
             <p class="mt-5 mb-3 text-muted">&copy; 2021 Stray Help</p>

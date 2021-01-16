@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import Header from '../views/F_Layout/Header';
-import Footer from '../views/F_Layout/Footer';
+import Header from '../components/user/Header';
+import Footer from '../components/user/Footer';
 
 export default {
   name: 'Front',

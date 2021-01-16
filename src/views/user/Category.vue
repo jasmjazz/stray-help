@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <Alert></Alert>
     <loading :active.sync="isLoading" loader="dots"></loading>
+    <Alert></Alert>
+    <Cart></Cart>
     <div class="row mt-4">
       <div class="col-sm-4 col-sm-12 col-md-12 col-lg-4">
         <ul class="nav" style="font-size: 16px;">
@@ -9,7 +10,7 @@
             <router-link class="nav-link" to="/"><span class="choose">首頁</span></router-link>
           </li>
           <li class="nav-item" style="font-weight: bolder">
-            <span class="nav-link active" style="color: #f57f17">分類</span>
+            <span class="nav-link active" style="color: #f57f17">種類</span>
           </li>
         </ul>
         <ul class="list-group mt-2">
@@ -78,6 +79,7 @@
 
 <script>
 import Alert from '../../components/AlertMessage';
+import Cart from '../../components/user/Cart';
 
 export default {
   name: 'Category',
@@ -94,6 +96,7 @@ export default {
   },
   components: {
     Alert,
+    Cart,
   },
   methods: {
     getAllProducts(page = 1) {
@@ -146,17 +149,22 @@ export default {
         vm.$set(product, 'qty', qty);
         vm.$set(product, 'total', total);
         vm.cart.push(product); // 將此品項加入購物車
+        vm.$bus.$emit('message: push', '已加入購物車');
       } else { // Yes
         // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
         const tempProduct = { ...vm.cart[cartIndex] };
-        tempProduct.qty += qty;
+        if (tempProduct.qty + qty > 10) {
+          vm.$bus.$emit('message: push', '同款糧食不得超過10組！', 'danger');
+        } else {
+          tempProduct.qty += qty;
+          vm.$bus.$emit('message: push', '已加入購物車');
+        }
         tempProduct.total = parseInt((product.price * tempProduct.qty), 10);
         // 使用cartIndex找到此品項在購物車中的位置並刪除
         vm.cart.splice(cartIndex, 1);
         vm.cart.push(tempProduct); // 由tempProduct建立new data
       }
       localStorage.setItem('cart', JSON.stringify(vm.cart));
-      vm.$bus.$emit('message: push', '已加入購物車');
       vm.getCart();
     },
     setPage(page) {

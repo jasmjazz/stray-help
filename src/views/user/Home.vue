@@ -1,5 +1,7 @@
 <template>
   <div>
+    <loading :active.sync="isLoading" loader="dots"></loading>
+    <Cart></Cart>
     <!--content-->
     <div class="container-fluid content">
       <div class="row">
@@ -50,7 +52,7 @@
           v-for="item in allProducts.slice(firstProduct, firstProduct + countProduct)"
           :key="item.id">
           <div class="card border-0 product-card"
-            @click="$router.push(`detail/${item.id}`)">
+            @click="$router.push(`/detail/${item.id}`)">
             <div style="height: 260px;
               background-size: cover;"
               :style="{backgroundImage: `url(${item.imageUrl})`}">
@@ -123,10 +125,13 @@
 </template>
 
 <script>
+import Cart from '../../components/user/Cart';
+
 export default {
   name: 'Home',
   data() {
     return {
+      isLoading: false,
       allProducts: [],
       product: {},
       pagination: {},
@@ -135,13 +140,18 @@ export default {
       cart: [],
     };
   },
+  components: {
+    Cart,
+  },
   methods: {
     getAllProducts(page = 1) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
       const vm = this;
+      vm.isLoading = true;
       vm.$http.get(api).then((response) => {
         vm.allProducts = response.data.products.filter(item => item.is_enabled === 1);
         vm.pagination = response.data.pagination;
+        vm.isLoading = false;
       });
     },
     setPage(page) {
@@ -171,17 +181,22 @@ export default {
         vm.$set(product, 'qty', qty);
         vm.$set(product, 'total', total);
         vm.cart.push(product); // 將此品項加入購物車
+        vm.$bus.$emit('message: push', '已加入購物車');
       } else { // Yes
         // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
         const tempProduct = { ...vm.cart[cartIndex] };
-        tempProduct.qty += qty;
+        if (tempProduct.qty + qty > 10) {
+          vm.$bus.$emit('message: push', '同款糧食不得超過10組！', 'danger');
+        } else {
+          tempProduct.qty += qty;
+          vm.$bus.$emit('message: push', '已加入購物車');
+        }
         tempProduct.total = parseInt((product.price * tempProduct.qty), 10);
         // 使用cartIndex找到此品項在購物車中的位置並刪除
         vm.cart.splice(cartIndex, 1);
         vm.cart.push(tempProduct); // 由tempProduct建立new data
       }
       localStorage.setItem('cart', JSON.stringify(vm.cart));
-      vm.$bus.$emit('message: push', '糧食已加入購物車');
       vm.getCart();
     },
   },

@@ -13,33 +13,70 @@
 body {
   cursor: default;
 }
+
 // Header
 .navbar {
   background-color: #aeaeae;
   font-family: Papyrus;
-  font-weight: bolder;
-  position: relative;
   height: 55px;
+  position: relative;
+  .logo {
+    position: absolute;
+    top: 24%;
+    left: 2%;
+    font-size: 25px;
+    color: #000000;
+    margin-right: 4px;
+  }
+  .name {
+    position: absolute;
+    top: 26%;
+    margin-left: 18px;
+    font-size: 18px;
+    color: #000000;
+    @include pro {
+      margin-left: 0;
+    }
+    @include pad {
+      margin-left: 0;
+    }
+  }
 }
-.navbar .logo {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
-  margin-right: 6px;
-  margin-bottom: 6px;
-}
-.navbar .name {
-  font-size: 20px;
-  color: #000000;
-}
-.navbar .cart {
-  position: absolute;
-  margin: auto;
-  top: 25%;
-  right: 35px;
-  width: 30px;
-  height: 30px;
+
+// 購物車樣式
+.cart {
+  position: fixed;
+  right: 1%;
+  top: 2%;
+  z-index: 100;
   cursor: pointer;
+  .icon {
+    width: 65px;
+    background-color: #8d6e63;
+    z-index: 100;
+    padding: 17px 18px;
+    border-radius: 99em;
+    position: relative;
+    i {
+      display: block;
+      font-size: 35px;
+      z-index: 500;
+      color: #ffffff;
+    }
+    .num {
+      background-color: red;
+      color: #ffffff;
+      padding: 2px 10px;
+      border-radius: 99em;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      span {
+        font-family: "微軟正黑體";
+        font-weight: bolder;
+      }
+    }
+  }
 }
 
 /*carousel*/

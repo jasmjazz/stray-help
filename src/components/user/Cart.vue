@@ -1,59 +1,33 @@
 <template>
   <div>
-    <nav class="navbar navbar-light navbar-fixed-top">
-      <router-link class="nav-link" to="/">
-        <img src="../../assets/icon/logo.svg" class="d-inline-block logo" alt="logo">
-        <span class="name">Stray Help</span>
-      </router-link>
-      <img src="../../assets/icon/cart.svg" class="d-inline-block cart"
-        @click="openModal" alt="shopping-cart">
-    </nav>
-    <!--carousel-->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="../../assets/carousel/carousel01.png" class="d-block w-100" alt="carousel-img">
-          <div class="carousel-box">
-            <div class="carousel-caption d-none d-md-block carousel-first">
-              <p>對你來說，<br/>
-              牠只是你生命中的一部分；</p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="../../assets/carousel/carousel02.png" class="d-block w-100"
-            style="opacity: 0.9;" alt="carousel-img">
-          <div class="carousel-box">
-            <div class="carousel-caption d-none d-md-block carousel-second">
-              <p>對牠來說，<br/>
-              你卻是牠的全世界。</p>
-            </div>
-          </div>
-        </div>
+    <div class="cart">
+      <div class="icon" @click="checkcart">
+        <div class="num"><span>{{ cart.length }}</span></div>
+        <i class="fas fa-shopping-bag"></i>
       </div>
     </div>
-    <!--empty-->
-    <div v-if="cart.length <= 0" class="modal fade" id="cartModal" tabindex="-1"
+        <!--emptyModal-->
+    <div v-if="cart.length === 0" class="modal fade" id="cartModal" tabindex="-1"
       role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" id="exampleModalLabel"
               style="margin-left: 42%; font-weight: bold; letter-spacing: 1px">
-              集糧盒
+              糧食車
             </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body" style="text-align: center">
-            <h4>還沒有選擇糧食哦！</h4>
+            <h4>還沒有選取糧食哦！</h4>
           </div>
           <div class="modal-footer">
             <router-link class="nav-link" :to="{ name: 'Category' }">
               <button type="button" class="btn btn-dark btn-block" data-dismiss="modal"
                 style="letter-spacing: 1px">
-                去看看
+                去逛逛
               </button>
             </router-link>
           </div>
@@ -61,14 +35,14 @@
       </div>
     </div>
     <!--cartModal-->
-    <div v-if="cart.length > 0" class="modal fade" id="cartModal" tabindex="-1"
+    <div v-else class="modal fade" id="cartModal" tabindex="-1"
       role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" id="exampleModalLabel"
               style="margin-left: 45%; font-weight: bold; letter-spacing: 1px">
-              集糧盒
+              糧食車
             </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -78,7 +52,7 @@
             <table class="table">
               <thead>
                 <th width="10%"></th>
-                <th width="15%">分類</th>
+                <th width="15%">種類</th>
                 <th width="20%">品名</th>
                 <th width="12%">價格</th>
                 <th width="9%"></th>
@@ -163,8 +137,9 @@ export default {
         });
       }
     },
-    openModal() {
-      this.getCart();
+    checkcart() {
+      const vm = this;
+      vm.getCart();
       $('#cartModal').modal('show');
     },
     delCart(id) {
@@ -178,14 +153,17 @@ export default {
       vm.$bus.$emit('message: push', '已刪除糧食');
       vm.getCart();
     },
+    cartList() {
+      setInterval(() => {
+        this.getCart();
+      }, 1000);
+    },
   },
   created() {
     this.getCart();
   },
   mounted() {
-    $('.carousel').carousel({
-      interval: 4000,
-    });
+    this.cartList();
   },
 };
 </script>

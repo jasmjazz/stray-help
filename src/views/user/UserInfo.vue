@@ -4,22 +4,17 @@
     <div class="row mt-4" style="font-size: 16px">
       <div class="col-4 col-sm">
         <div class="alert alert-dark" role="alert">
-          1. 集糧清單
+          1. 糧食明細
         </div>
       </div>
-      <div class="col-3 col-sm" style="font-weight: bold">
+      <div class="col-4 col-sm" style="font-weight: bold">
         <div class="alert alert-success" role="alert">
           2. 填寫資料
         </div>
       </div>
-      <div class="col-3 col-sm">
+      <div class="col-4 col-sm">
         <div class="alert alert-dark" role="alert">
-          3. 核對資訊
-        </div>
-      </div>
-      <div class="col-3 col-sm">
-        <div class="alert alert-dark" role="alert">
-          4. 完成捐糧
+          3. 完成捐糧
         </div>
       </div>
     </div>
@@ -29,7 +24,7 @@
         <div class="card" style="background-color: #f5f5f5">
           <div class="mt-4 row justify-content-center">
             <h4 style="font-weight: bold; color: #494949">
-              <i class="fas fa-paw" style="padding-right: 5px"></i>
+              <i class="fas fa-paw" style="margin-right: 5px"></i>
               捐助人資訊
             </h4>
           </div>
@@ -73,14 +68,17 @@
                     </ValidationProvider>
                 </div>
                 <div class="form-group">
-                  <label for="useraddress" style="font-size: 17px">捐助人地址</label>
+                  <label for="useraddress" style="font-size: 17px">
+                    捐助人地址<span style="color: green">（若需園區簽收單，請務必填寫）</span>
+                  </label>
                   <input type="text" class="form-control" name="address" id="useraddress"
                     v-model="form.user.address" placeholder="請輸入地址">
                 </div>
                 <div class="form-group">
                   <label for="comment" style="font-size: 17px">想說的話</label>
                   <textarea name="" id="comment" class="form-control"
-                    cols="30" rows="10" v-model="form.message"></textarea>
+                    cols="30" rows="10" v-model="form.message"
+                    placeholder="說說你的想法吧"></textarea>
                 </div>
                 <div class="text-right">
                   <button class="btn btn-dark">填寫完成</button>
@@ -123,10 +121,10 @@ export default {
       vm.$http.post(api, { data: order }).then((response) => {
         if (response.data.success) {
           vm.isLoading = false;
-          vm.$bus.$emit('message: push', response.data.message);
+          this.$router.push(`/ordercheck/${response.data.orderId}`);
+          localStorage.removeItem('cart');
         } else {
           vm.isLoading = false;
-          vm.$bus.$emit('message: push', response.data.message, 'dander');
         }
       });
     },
