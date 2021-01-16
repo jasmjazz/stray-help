@@ -13,7 +13,7 @@ export default new VueRouter({
   routes: [
     {
       path: '*',
-      redirect: '/',
+      redirect: '/login',
     },
     {
       path: '', // 對應的虛擬路徑
