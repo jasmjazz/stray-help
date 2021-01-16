@@ -5,26 +5,25 @@
     <!--content-->
     <div class="container-fluid content">
       <div class="row">
-        <div class="col-md-12 col-lg-6 content-left">
-          <h2 style="color: #ffffff; line-height: 55px;
-            letter-spacing: 6px; font-weight: bold">
+        <div class="col-md-12 col-lg-12 col-xl-6 content-left">
+          <h2 style="color: #ffffff">
             公告
           </h2>
-          <h5 style="color: #ffc107; line-height: 40px; letter-spacing: 1px">
+          <h5 style="color: #ffc107">
             <i class="fas fa-exclamation-triangle"></i>
             165防詐騙宣導<br/>
             提醒您提高警覺，疑似詐騙請撥打165求證
           </h5>
-          <h5 style="color: #f5f5f5; line-height: 40px; letter-spacing: 1px">
+          <h5 style="color: #f5f5f5">
             ※若需園區簽收單，請加入 LINE@ 或於 FB 粉絲團洽詢<br/>
             ※公司行號、個人慈愛捐助需要報稅者，請與我們聯繫
           </h5>
-          <h4 style="line-height: 40px; margin-top: 15px; letter-spacing: 2px">
-            <span style="color: #ffffff">點擊下方物資</span><br/>
+          <h4>
+            <span style="color: #ffffff">逛逛下方物資</span><br/>
             <span style="color: red">立即愛心捐糧</span>
           </h4>
         </div>
-        <div class="col-md-12 col-lg-6 content-right">
+        <div class="col-md-12 col-lg-12 col-xl-6 content-right">
           <div class="card border-0">
             <div class="card-body">
               <p>全省有許多流浪貓狗園區面臨缺糧的問題，<br/>
@@ -35,10 +34,7 @@
                 能力有限的愛爸愛媽需要你我的幫助。
               </p>
               <h4 class="mt-4">『集食』給予最實質的幫助
-                <i class="fas fa-paw"
-                  style="font-size: 30px; transform:rotate(20deg);
-                    vertical-align: top">
-                </i>
+                <i class="fas fa-paw"></i>
               </h4>
             </div>
           </div>
@@ -53,23 +49,22 @@
           :key="item.id">
           <div class="card border-0 product-card"
             @click="$router.push(`/detail/${item.id}`)">
-            <div style="height: 260px;
-              background-size: cover;"
+            <div class="image"
               :style="{backgroundImage: `url(${item.imageUrl})`}">
             </div>
             <div class="card-body">
-              <h4 v-if="item.category === 0">
+              <h5 v-if="item.category === 0">
                 <span class="badge badge-dark float-right ml-2">主食</span>
-              </h4>
-              <h4 v-else-if="item.category === 1">
+              </h5>
+              <h5 v-else-if="item.category === 1">
                 <span class="badge badge-warning float-right ml-2">副食</span>
-              </h4>
-              <h4 v-else>
+              </h5>
+              <h5 v-else>
                 <span class="badge badge-info float-right ml-2">零食</span>
-              </h4>
-              <h3 class="card-title">
+              </h5>
+              <h4 class="card-title">
                 <a href="#" class="text-dark">{{ item.title }}</a>
-              </h3>
+              </h4>
               <p class="card-text" style="font-size: 16px">{{item.description}}</p>
             </div>
             <div class="card-footer d-flex" style="background-color: #494949">
@@ -100,9 +95,9 @@
     <div class="container mt-5">
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-4">流浪貓狗助糧平台
+          <h2 class="display-4">流浪貓狗助糧平台
             <span class="badge badge-warning tag-2">宗旨</span>
-          </h1>
+          </h2>
           <hr class="my-4">
           <p>1. 以全台灣急缺糧食的園區優先配送。</p>
           <p>2. 不分大小間、有無政府核可，因為浪浪無法選擇在哪裡生活。</p>
@@ -237,20 +232,4 @@ export default {
   animation-iteration-count: infinite;
 }
 
-.jumbotron {
-  letter-spacing: 3px;
-}
-.jumbotron h1 {
-  position: relative;
-  font-weight: bolder;
-}
-.jumbotron .badge {
-  position: absolute;
-  top: -20px;
-  margin-left: 10px;
-}
-.jumbotron p {
-  font-size: 22px;
-  line-height: 32px;
-}
 </style>

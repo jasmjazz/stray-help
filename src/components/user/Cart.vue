@@ -49,15 +49,15 @@
             </button>
           </div>
           <div class="modal-body">
-            <table class="table">
+            <table class="table cart-table" style="width: 100%">
               <thead>
                 <th width="10%"></th>
-                <th width="15%">種類</th>
+                <th class="s-no" width="15%">種類</th>
                 <th width="20%">品名</th>
                 <th width="12%">價格</th>
-                <th width="9%"></th>
+                <th class="s-no" width="9%"></th>
                 <th width="20%">數量</th>
-                <th width="14%">小計</th>
+                <th class="s-no" width="14%">小計</th>
               </thead>
               <tbody>
                 <tr v-for="item in cart" :key="item.id">
@@ -66,17 +66,17 @@
                       <i class="fas fa-trash" style="font-size: 20px"></i>
                     </a>
                   </td>
-                  <td class="align-middle" v-if="item.category === 0">
+                  <td v-if="item.category === 0" class="align-middle s-no">
                     <h5>
                       <span class="badge badge-dark">主食</span>
                     </h5>
                   </td>
-                  <td class="align-middle" v-else-if="item.category === 1">
+                  <td v-else-if="item.category === 1" class="align-middle s-no">
                     <h5>
                       <span class="badge badge-warning">副食</span>
                     </h5>
                   </td>
-                  <td class="align-middle" v-else>
+                  <td v-else class="align-middle s-no">
                     <h5>
                       <span class="badge badge-info">零食</span>
                     </h5>
@@ -87,18 +87,18 @@
                   <td class="align-middle text-right">
                     {{ item.price | currency }}
                   </td>
-                  <td></td>
+                  <td class="s-no"></td>
                   <td class="align-middle" style="padding-left: 23px">
                     {{ item.qty }}
                   </td>
-                  <td class="align-middle text-right">
+                  <td class="align-middle text-right s-no">
                     {{ item.total | currency }}
                   </td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr style="font-weight: bold">
-                  <td colspan="6" class="text-right">總計</td>
+                  <td colspan="6" class="text-right s-no">總計</td>
                   <td class="text-right">{{ money | currency }}</td>
                 </tr>
               </tfoot>
