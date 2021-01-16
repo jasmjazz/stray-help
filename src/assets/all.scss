@@ -2,5 +2,5 @@
 @import "./helpers/_variables";
 @import "~bootstrap/scss/bootstrap";
 
-@import "./_dashboard.scss";
-@import "./_home.scss";
+@import "./helpers/dashboard";
+@import "./helpers/user/home";
