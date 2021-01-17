@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fixed-bottom arrow"><img src="../../assets/icon/arrow.svg"></div>
-    <footer class="container footer">
+    <footer class="container footer mt-3">
       <div class="row">
         <div class="col footer-text">
           <h5>Contact Us</h5>

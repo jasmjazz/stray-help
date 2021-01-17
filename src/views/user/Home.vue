@@ -52,10 +52,13 @@
     </div> -->
     <!--img-->
     <div class="container">
-      <div class="img1"></div>
+      <img src="../../assets/image/img01.png" class="img-fluid" alt="Responsive image">
     </div>
     <div class="container">
-      <div class="img2"></div>
+      <img src="../../assets/image/img03.gif" class="img-fluid" alt="Responsive image">
+    </div>
+    <div class="container">
+      <img src="../../assets/image/img02.png" class="img-fluid" alt="Responsive image">
     </div>
     <!--Message-->
     <div class="container">
@@ -232,19 +235,6 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
-}
-.img1{
-  height: 65vh;
-  background: url('../../assets/image/img01.png');
-  background-size: cover;
-  background-position: center;
-  /* background-size: 100% auto; */
-}
-.img2 {
-  height: 65vh;
-  background: url('../../assets/image/img03.gif');
-  background-size: cover;
-  background-position: center;
 }
 
 @keyframes blink-smooth {
