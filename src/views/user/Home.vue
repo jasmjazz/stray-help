@@ -50,18 +50,19 @@
         </iframe>
       </div>
     </div> -->
-    <!--img-->
-    <div class="container">
-      <img src="../../assets/image/img01.png" class="img-fluid" alt="Responsive image">
-    </div>
-    <div class="container">
-      <img src="../../assets/image/img03.gif" class="img-fluid" alt="Responsive image">
-    </div>
-    <div class="container">
-      <img src="../../assets/image/img02.png" class="img-fluid" alt="Responsive image">
-    </div>
-    <!--Message-->
-    <div class="container">
+    <div class="wrap">
+      <!--img-->
+      <div class="container-fulid">
+        <img src="../../assets/image/img01.png" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="container-fulid">
+        <img src="../../assets/image/img03.gif" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="container-fulid">
+        <img src="../../assets/image/img02.png" class="img-fluid" alt="Responsive image">
+      </div>
+      <!--Message-->
+      <div class="container-fulid">
       <div class="jumbotron">
         <div class="container">
           <h2 class="display-4">流浪貓狗助糧平台
@@ -75,11 +76,12 @@
           <p>5. 領養不棄養！</p>
         </div>
       </div>
+      </div>
     </div>
     <!--ProductList-->
     <div class="container">
       <div class="row">
-        <div class="card-group col-md-6 col-lg-4 mb-4"
+        <div class="card-group col-md-6 col-lg-4 card-bottom"
           v-for="item in allProducts.slice(firstProduct, firstProduct + countProduct)"
           :key="item.id">
           <div class="card border-0 product-card"

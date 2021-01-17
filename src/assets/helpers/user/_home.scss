@@ -18,6 +18,19 @@ body {
   cursor: default;
   background-color: #f5f5f5;
 }
+.wrap {
+  width: 1200px;
+  margin: auto;
+  @include pro {
+    width: 1024px;
+  }
+  @include pad {
+    width: 768px;
+  }
+  @include iX {
+    width: 376px;
+  }
+}
 
 // Navbar
 .navbar {
@@ -27,7 +40,7 @@ body {
   height: 55px;
   position: relative;
   @include iX {
-    height: 45px;
+    height: 40px;
   }
   .logo {
     position: absolute;
@@ -308,12 +321,12 @@ body {
 
 //閃現
 .jumbotron {
-  letter-spacing: 3px;
   background-color: #c8dae6;
   @include iX {
     letter-spacing: 0;
   }
   h2 {
+    letter-spacing: 3px;
     position: relative;
     font-weight: bolder;
     font-size: 50px;
@@ -324,6 +337,7 @@ body {
       font-size: 28px;
     }
     @include iX {
+      letter-spacing: 2px;
       font-size: 20px;
     }
   }
@@ -348,8 +362,9 @@ body {
       line-height: 24px;
     }
     @include iX {
-      font-size: 16px;
-      line-height: 20px;
+      letter-spacing: 1px;
+      font-size: 14px;
+      line-height: 18px;
     }
   }
 }
@@ -369,8 +384,12 @@ body {
 }
 
 // card
-.product-card {
+.card-bottom {
   cursor: grab;
+  margin-bottom: 24px;
+  @include iX {
+    margin-bottom: 6px;
+  }
 }
 .product-card:hover {
   box-shadow: 6px 6px 6px #757575;
@@ -380,7 +399,7 @@ body {
     height: 240px;
     background-size: cover;
     @include iX {
-      height: 160px;
+      height: 140px;
       background-position: center;
     }
   }
