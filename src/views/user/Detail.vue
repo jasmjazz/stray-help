@@ -28,7 +28,7 @@
           <img :src="product.imageUrl" class="figure-img img-fluid rounded" alt="...">
         </figure>
       </div>
-      <div class="col-sm-6 mt-2">
+      <div class="col-sm-6 mt-3">
         <div class="row">
           <div class="col-sm-12">
             <div class="card border-0">
@@ -40,7 +40,7 @@
                     class="badge badge-warning">副食</span>
                   <span v-else class="badge badge-info">零食</span>
                 </h4>
-                <h1 class="mt-3" style="font-weight: bold">{{ product.title }}</h1>
+                <h2 class="mt-3" style="font-weight: bold">{{ product.title }}</h2>
                 <p class="mt-3 description">
                   {{ product.description }}</p>
                 <p style="font-size: 16px; line-height: 10px; font-weight: bold">
@@ -80,11 +80,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-12 mt-4">
-          <h2 style="text-align: center; line-height: 55px;
-            font-style: oblique; text-shadow: #757575 0.1em 0.1em 0.2em"
-            >助糧，不捐款</h2>
         </div>
       </div>
     </div>
