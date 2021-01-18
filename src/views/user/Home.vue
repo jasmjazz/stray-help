@@ -5,7 +5,7 @@
     <!--content-->
     <div class="container-fluid content">
       <div class="row">
-        <div class="col-md-12 col-lg-12 col-xl-6 content-left">
+        <div class="col-md-12 col-xl-6 content-left">
           <h2 style="color: #ffffff">
             公告
           </h2>
@@ -15,15 +15,15 @@
             提醒您提高警覺，疑似詐騙請撥打165求證
           </h5>
           <h5 style="color: #f5f5f5">
-            ※若需園區簽收單，請加入 LINE@ 或於 FB 粉絲團洽詢<br/>
-            ※公司行號、個人慈愛捐助需要報稅者，請與我們聯繫
+            ※若需簽收單者，請於 LINE@ 或 FB 洽詢<br/>
+            ※若需報稅者，請與我們聯繫
           </h5>
           <h4>
             <span style="color: #ffffff">逛逛下方物資</span><br/>
             <span style="color: red">立即愛心捐糧</span>
           </h4>
         </div>
-        <div class="col-md-12 col-lg-12 col-xl-6 content-right">
+        <div class="col-md-12 col-xl-6 content-right">
           <div class="card border-0">
             <div class="card-body">
               <p>全省有許多流浪貓狗園區面臨缺糧的問題，<br/>
@@ -41,24 +41,20 @@
         </div>
       </div>
     </div>
-    <!--iframe-->
-    <!-- <div class="container iframe">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item"
-          src="https://www.youtube.com/embed/l9itdKFvMz4?rel=0"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
-      </div>
-    </div> -->
     <div class="wrap">
       <!--img-->
       <div class="container-fulid">
+        <!--iframe-->
+        <div class="iframe">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item"
+              src="https://www.youtube.com/embed/l9itdKFvMz4?rel=0"
+              allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
         <img src="../../assets/image/img01.png" class="img-fluid" alt="Responsive image">
-      </div>
-      <div class="container-fulid">
         <img src="../../assets/image/img03.gif" class="img-fluid" alt="Responsive image">
-      </div>
-      <div class="container-fulid">
         <img src="../../assets/image/img02.png" class="img-fluid" alt="Responsive image">
       </div>
       <!--Message-->
@@ -68,7 +64,7 @@
           <h2 class="display-4">流浪貓狗助糧平台
             <span class="badge badge-warning tag-2">宗旨</span>
           </h2>
-          <hr class="my-4">
+          <hr class="my-4 mb-5">
           <p>1. 捐糧，不捐款。</p>
           <p>2. 以全台灣急缺糧食的園區優先配送。</p>
           <p>3. 物資皆由平台平均分配。</p>
@@ -81,10 +77,10 @@
     <!--ProductList-->
     <div class="container">
       <div class="row">
-        <div class="card-group col-md-6 col-lg-4 card-bottom"
+        <div class="card-group col-md-6 col-lg-4 home-card"
           v-for="item in allProducts.slice(firstProduct, firstProduct + countProduct)"
           :key="item.id">
-          <div class="card border-0 product-card"
+          <div class="card border-1"
             @click="$router.push(`/detail/${item.id}`)">
             <div class="image"
               :style="{backgroundImage: `url(${item.imageUrl})`}">
@@ -102,18 +98,13 @@
               <h4 class="card-title">
                 <a href="#" class="text-dark">{{ item.title }}</a>
               </h4>
-              <p class="card-text" style="font-size: 16px">{{item.description}}</p>
+              <p class="card-text">{{item.description}}</p>
             </div>
-            <div class="card-footer" style="background-color: #494949">
-              <h5 class="text-right"
-              style="color: #ffffff; letter-spacing: 1px">
+            <h5 class="text-right"
+              style="color: #616161; font-weight: bold;
+                letter-spacing: 1px; padding: 0 15px 10px 0">
                 NT {{ item.price | currency }}
-              </h5>
-              <!-- <button type="button" class="btn btn-outline-light ml-auto"
-                @click.stop="addCart(item)">
-                捐助糧食
-              </button> -->
-            </div>
+            </h5>
           </div>
         </div>
       </div>

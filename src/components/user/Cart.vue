@@ -1,12 +1,68 @@
 <template>
   <div>
-    <div class="cart">
+    <div class="desk-cart">
       <div class="icon" @click="checkcart">
         <div class="num"><span>{{ cart.length }}</span></div>
         <i class="fas fa-shopping-bag"></i>
       </div>
     </div>
-        <!--emptyModal-->
+    <!--mobile-->
+    <div class="mobile-cart">
+      <div class="icon">
+        <div class="num"><span>{{ cart.length }}</span></div>
+        <i class="fas fa-shopping-bag"></i>
+      </div>
+    </div>
+    <!--aside-->
+    <div class="aside">
+      <div class="list-group">
+        <div class="list-group-item title">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mt-2">選購糧食</h5>
+            <i class="fas fa-times close-open" style="color: #ffffff; font-size: 18px"></i>
+          </div>
+        </div>
+        <div v-if="cart.length === 0">
+          <div class="d-flex w-100 justify-content-center">
+            <h6 class="mt-5">還沒有選購商品哦</h6>
+          </div>
+        </div>
+        <div v-else v-for="item in cart" :key="item.id" class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+              <span v-if="item.category === 0" class="badge badge-success">主食</span>
+              <span v-else-if="item.category === 1" class="badge badge-success">副食</span>
+              <span v-else class="badge badge-success">零食</span>
+            </h5>
+            <small class="mt-1">
+              <a class="icon" @click.prevent="delCart(item.id)">
+                <i class="fas fa-trash" style="color: #ffffff; font-size: 16px"></i>
+              </a>
+            </small>
+          </div>
+          <h5 class="mt-3 mb-2">{{ item.title }}</h5>
+          <h5>
+            {{ item.qty }} X NT {{ item.price | currency}}
+          </h5>
+        </div>
+        <div class="d-flex w-100 justify-content-center">
+          <router-link v-if="cart.length === 0" :to="{ name: 'Category' }"
+            class="nav-link close-open">
+            <button type="button" class="btn btn-outline-light mt-4"
+              style="letter-spacing: 1px">
+                去逛逛
+            </button>
+          </router-link>
+          <router-link v-else :to="{ name: 'CheckCart' }" class="nav-link close-open">
+            <button type="button" class="btn btn-outline-light mt-4"
+              style="letter-spacing: 1px">
+                捐糧去
+            </button>
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <!--emptyModal-->
     <div v-if="cart.length === 0" class="modal fade" id="cartModal" tabindex="-1"
       role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -164,6 +220,14 @@ export default {
   },
   mounted() {
     this.cartList();
+    $('.mobile-cart').click((e) => {
+      e.preventDefault();
+      $('body').toggleClass('open');
+    });
+    $('.close-open').click((e) => {
+      e.preventDefault();
+      $('body').removeClass('open');
+    });
   },
 };
 </script>

@@ -3,94 +3,63 @@
     <Alert></Alert>
     <loading :active.sync="isLoading" loader="dots"></loading>
     <div class="row mt-4" style="font-size: 16px">
-      <div class="col-4 col-sm" style="font-weight: bold">
+      <div class="col-md-4 col-sm-12" style="font-weight: bold">
         <div class="alert alert-success" role="alert">
           1. 糧食明細
         </div>
       </div>
-      <div class="col-4 col-sm">
+      <div class="col-md-4 col-sm-12">
         <div class="alert alert-dark" role="alert">
           2. 填寫資料
         </div>
       </div>
-      <div class="col-4 col-sm">
+      <div class="col-md-4 col-sm-12">
         <div class="alert alert-dark" role="alert">
           3. 完成捐糧
         </div>
       </div>
     </div>
     <!--Cart-->
-    <div class="row mt-4">
-      <div class="col-12">
-        <div class="card border-1">
-          <div class="card-body">
-            <table v-if="cart.length > 0 " class="table mt-4" style="font-size: 17px">
-              <thead>
-                <th width="10%"></th>
-                <th width="15%">種類</th>
-                <th width="20%">品名</th>
-                <th width="12%">價格</th>
-                <th width="7%"></th>
-                <th width="22%">數量</th>
-                <th width="14%">小計</th>
-              </thead>
-              <tbody>
-                <tr v-for="item in cart" :key="item.id">
-                  <td class="align-middle">
-                    <a class="icon" @click.prevent="delCart(item.id)">
-                      <i class="fas fa-trash" style="font-size: 20px"></i>
-                    </a>
-                  </td>
-                  <td class="align-middle" v-if="item.category === 0">
-                    <h5>
-                      <span class="badge badge-dark">主食</span>
-                    </h5>
-                  </td>
-                  <td class="align-middle" v-else-if="item.category === 1">
-                    <h5>
-                      <span class="badge badge-warning">副食</span>
-                    </h5>
-                  </td>
-                  <td class="align-middle" v-else>
-                    <h5>
-                      <span class="badge badge-info">零食</span>
-                    </h5>
-                  </td>
-                  <td class="align-middle">
-                    {{ item.title }}
-                  </td>
-                  <td class="align-middle text-right">
-                    {{ item.price | currency }}
-                  </td>
-                  <td></td>
-                  <td class="align-middle">
+    <div class="card border-1">
+      <div class="card-body">
+        <ul>
+          <li v-for="item in cart" :key="item.id">
+            <div class="row">
+              <div class="col-2 p-0">
+                <a class="icon" @click.prevent="delCart(item.id)">
+                  <i class="fas fa-trash" style="font-size: 18px"></i>
+                </a>
+              </div>
+              <div class="col-7 p-0">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <p style="font-size: 18px">{{ item.title }}</p>
+                  </div>
+                  <div class="col-12 col-md-6">
                     <i class="far fa-minus-square"
                       style="font-size: 20px; vertical-align: text-bottom"
-                      @click="editNum(item, -1)"></i>
-                    <span style="font-size: 18px; margin-left: 20px; margin-right: 20px">
+                      @click="editNum(item, -1)">
+                    </i>
+                    <span style="font-size: 18px; margin-left: 15px; margin-right: 15px">
                       {{ item.qty }}
                     </span>
                     <i class="far fa-plus-square"
                       style="font-size: 20px; vertical-align: text-bottom"
-                      @click="editNum(item, +1)"></i>
-                  </td>
-                  <td class="align-middle text-right">
-                    {{ item.total | currency }}
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr v-if="money !== 0" style="font-weight: bold">
-                  <td colspan="6" class="text-right">總計</td>
-                  <td class="text-right">{{ money | currency }}</td>
-                </tr>
-              </tfoot>
-            </table>
-            <h3 v-else class="mt-4 mb-4" style="text-align: center">
-              還沒有選取糧食哦，快去看看吧！
-            </h3>
-          </div>
-        </div>
+                      @click="editNum(item, +1)">
+                    </i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 p-0 text-right">
+                <p style="font-size: 18px; padding-right: 15px">NT {{ item.price | currency}}</p>
+              </div>
+            </div>
+            <hr/>
+          </li>
+          <p class="text-right" style="font-weight: bold; font-size: 18px">
+            總計 NT {{ money | currency }}
+          </p>
+        </ul>
       </div>
     </div>
     <!--Pay-->
@@ -218,3 +187,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+ul {
+  list-style-type: none;
+}
+</style>

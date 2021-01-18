@@ -2,17 +2,17 @@
   <div class="container">
     <loading :active.sync="isLoading" loader="dots"></loading>
     <div class="row mt-4" style="font-size: 16px">
-      <div class="col-4 col-sm">
+      <div class="col-md-4 col-sm-12">
         <div class="alert alert-dark" role="alert">
           1. 糧食明細
         </div>
       </div>
-      <div class="col-4 col-sm">
+      <div class="col-md-4 col-sm-12">
         <div class="alert alert-dark" role="alert">
           2. 填寫資料
         </div>
       </div>
-      <div class="col-4 col-sm">
+      <div class="col-md-4 col-sm-12">
         <div class="alert alert-success" style="font-weight: bold" role="alert">
           3. 完成捐糧
         </div>

@@ -5,7 +5,7 @@
     <Cart></Cart>
     <div class="row mt-4">
       <div class="col-sm-4 col-sm-12 col-md-12 col-lg-4">
-        <ul class="nav" style="font-size: 16px;">
+        <ul class="nav" style="font-size: 18px">
           <li class="nav-item">
             <router-link class="nav-link" to="/"><span class="choose">首頁</span></router-link>
           </li>
@@ -29,8 +29,7 @@
           <div class="card-group col-md-6 mb-4"
             v-for="item in products.slice(firstProduct, firstProduct + countProduct)"
             :key="item.id">
-            <div class="card border-0 product-card"
-              @click="$router.push(`detail/${item.id}`)">
+            <div class="card border-0 product-card">
               <div style="height: 250px; background-size: cover;"
                 :style="{backgroundImage: `url(${item.imageUrl})`}">
               </div>
@@ -44,9 +43,9 @@
                 <h4 v-else>
                   <span class="badge badge-info float-right ml-2">零食</span>
                 </h4>
-                <h3 class="card-title">
+                <h4 class="card-title">
                   <a class="text-dark">{{ item.title }}</a>
-                </h3>
+                </h4>
                 <p class="card-text" style="font-size: 16px">{{item.description}}</p>
               </div>
               <div class="card-footer d-flex" style="background-color: #494949">
@@ -54,13 +53,56 @@
                   NT {{ item.price | currency }}
                 </h5>
                 <button type="button" class="btn btn-outline-light ml-auto"
-                  style="letter-spacing: 2px" @click.stop="addCart(item)">
+                  style="letter-spacing: 2px" @click="getProduct(item.id)">
                   捐助糧食
                 </button>
               </div>
             </div>
           </div>
         </div>
+      <!--Modal-->
+      <div class="modal fade" id="detailModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="card border-0">
+                <div class="image mt-2"
+                  style="height: 300px; background-size: cover; background-position: center"
+                  :style="{backgroundImage: `url(${singleProduct.imageUrl})`}">
+                </div>
+                <div class="card-body">
+                <h5>
+                  <span v-if="singleProduct.category === 0"
+                    class="badge badge-dark">主食</span>
+                  <span v-else-if="singleProduct.category === 1"
+                    class="badge badge-warning">副食</span>
+                  <span v-else class="badge badge-info">零食</span>
+                </h5>
+                <h4 class="mt-3" style="font-weight: bold">{{singleProduct.title }}</h4>
+                <h5 class="mt-2" style="padding-top: 12px">
+                  {{ singleProduct.description }}</h5>
+                <h6>
+                  成分｜ {{ singleProduct.content }}</h6>
+                <h5 class="card-title mt-4" style="color: #616161">
+                  NT {{ singleProduct.price | currency }}
+                </h5>
+                <select class="form-control mt-3" v-model="num">
+                  <option :value="num" v-for="num in 10" :key="num">
+                    {{ num }}
+                  </option>
+                </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">再逛逛</button>
+              <button type="button" class="btn btn-dark" style="letter-spacing: 1px"
+              @click="addCart(singleProduct, num)">捐助</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!--pagination-->
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
@@ -92,6 +134,8 @@ export default {
       category: 3, // 取得全部分類
       products: [],
       cart: [],
+      singleProduct: [],
+      num: 1,
     };
   },
   components: {
@@ -116,6 +160,8 @@ export default {
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
         console.log(response);
+        vm.singleProduct = response.data.product;
+        $('#detailModal').modal('show');
         vm.isLoading = false;
       });
     },
@@ -132,7 +178,7 @@ export default {
       const vm = this;
       vm.cart = JSON.parse(localStorage.getItem('cart')) || [];
     },
-    addCart(product, qty = 1) {
+    addCart(product, qty) {
       const vm = this;
       let cartIndex = -1; // 因陣列索引由0開始，不可設置為0
       vm.getCart();
@@ -153,6 +199,7 @@ export default {
       } else { // Yes
         // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
         const tempProduct = { ...vm.cart[cartIndex] };
+        console.log(tempProduct.qty, '123');
         if (tempProduct.qty + qty > 10) {
           vm.$bus.$emit('message: push', '同款糧食不得超過10組！', 'danger');
         } else {
@@ -165,6 +212,7 @@ export default {
         vm.cart.push(tempProduct); // 由tempProduct建立new data
       }
       localStorage.setItem('cart', JSON.stringify(vm.cart));
+      $('#detailModal').modal('hide');
       vm.getCart();
     },
     setPage(page) {
@@ -192,6 +240,9 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
+}
+.card:hover {
+  box-shadow: 6px 6px 6px #757575;
 }
 .list-group-item {
   cursor: pointer;
