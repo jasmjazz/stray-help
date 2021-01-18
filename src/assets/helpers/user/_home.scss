@@ -433,7 +433,21 @@ body {
   }
 }
 
-// checkcart table
+// checkcart
+.checkcart {
+  p {
+    font-size: 18px;
+    @include ipone {
+      font-size: 14px;
+    }
+  }
+  .trash {
+    padding-top: 3px;
+    @include ipone {
+      padding-top: 20px;
+    }
+  }
+}
 
 // arrow
 .arrow {

@@ -21,7 +21,7 @@
     </div>
     <!--Cart-->
     <div class="card border-1">
-      <div class="card-body">
+      <div class="card-body checkcart">
         <h4 v-if="cart.length === 0" class="text-center"
           style="padding: 50px">還沒有選擇糧食哦，去逛逛吧！</h4>
         <ul v-else>
@@ -29,13 +29,13 @@
             <div class="row">
               <div class="col-2 p-0">
                 <a class="icon" @click.prevent="delCart(item.id)">
-                  <i class="fas fa-trash" style="font-size: 18px"></i>
+                  <i class="fas fa-trash trash" style="font-size: 18px"></i>
                 </a>
               </div>
               <div class="col-7 p-0">
                 <div class="row">
                   <div class="col-12 col-md-6">
-                    <p style="font-size: 18px">{{ item.title }}</p>
+                    <p>{{ item.title }}</p>
                   </div>
                   <div class="col-12 col-md-6">
                     <i class="far fa-minus-square"
@@ -53,7 +53,9 @@
                 </div>
               </div>
               <div class="col-3 p-0 text-right">
-                <p style="font-size: 18px; padding-right: 15px">NT {{ item.price | currency}}</p>
+                <p style="padding-right: 15px">
+                  NT {{ item.price | currency}}
+                </p>
               </div>
             </div>
             <hr/>
