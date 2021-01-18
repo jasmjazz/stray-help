@@ -22,7 +22,9 @@
     <!--Cart-->
     <div class="card border-1">
       <div class="card-body">
-        <ul>
+        <h4 v-if="cart.length === 0" class="text-center"
+          style="padding: 50px">還沒有選擇糧食哦，去逛逛吧！</h4>
+        <ul v-else>
           <li v-for="item in cart" :key="item.id">
             <div class="row">
               <div class="col-2 p-0">
@@ -56,7 +58,7 @@
             </div>
             <hr/>
           </li>
-          <p class="text-right" style="font-weight: bold; font-size: 18px">
+          <p v-if="cart.length > 0" class="text-right" style="font-weight: bold; font-size: 18px">
             總計 NT {{ money | currency }}
           </p>
         </ul>

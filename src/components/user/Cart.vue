@@ -19,12 +19,13 @@
         <div class="list-group-item title">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mt-2">選購糧食</h5>
-            <i class="fas fa-times close-open" style="color: #ffffff; font-size: 18px"></i>
+            <i class="fas fa-times close-open"
+              style="color: #ffffff; font-size: 18px; margin-top: 10px"></i>
           </div>
         </div>
         <div v-if="cart.length === 0">
           <div class="d-flex w-100 justify-content-center">
-            <h6 class="mt-5">還沒有選購商品哦</h6>
+            <h6 class="mt-5">還沒有選購糧食哦</h6>
           </div>
         </div>
         <div v-else v-for="item in cart" :key="item.id" class="list-group-item">
