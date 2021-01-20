@@ -12,10 +12,6 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
-      path: '*',
-      redirect: '/login',
-    },
-    {
       path: '', // 對應的虛擬路徑
       component: () => import('../views/Front.vue'), // 對應的元件
       children: [ // 巢狀路徑
@@ -74,6 +70,10 @@ export default new VueRouter({
           meta: { requiresAuth: true }, // 需經過驗證
         },
       ],
+    },
+    {
+      path: '*',
+      redirect: '/login',
     },
   ],
 });

@@ -41,10 +41,9 @@
         </div>
       </div>
     </div>
+      <!--iframe-->
     <div class="wrap">
-      <!--img-->
       <div class="container-fulid">
-        <!--iframe-->
         <div class="iframe">
           <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item"

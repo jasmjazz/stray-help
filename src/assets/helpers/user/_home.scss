@@ -9,8 +9,26 @@
   }
 }
 
-@mixin ipone {
+@mixin sur {
+  @media (max-width: 540px) {
+    @content;
+  }
+}
+
+@mixin plus {
+  @media (max-width: 416px) {
+    @content;
+  }
+}
+
+@mixin iphone {
   @media (max-width: 376px) {
+    @content;
+  }
+}
+
+@mixin anthor {
+  @media (max-width: 360px) {
     @content;
   }
 }
@@ -19,6 +37,7 @@ body {
   cursor: default;
   background-color: #f5f5f5;
 }
+
 .wrap {
   width: 1200px;
   margin: auto;
@@ -28,8 +47,17 @@ body {
   @include pad {
     width: 768px;
   }
-  @include ipone {
-    width: 376px;
+  @include sur {
+    width: 540px;
+  }
+  @include plus {
+    width: 414px;
+  }
+  @include iphone {
+    width: 375px;
+  }
+  @include anthor {
+    width: 360px;
   }
 }
 
@@ -51,7 +79,7 @@ body {
     @include pro {
       margin-left: 5px;
     }
-    @include ipone {
+    @include sur {
       margin-left: 0;
     }
   }
@@ -64,7 +92,7 @@ body {
   top: 0;
   cursor: pointer;
   z-index: 100;
-  @include ipone {
+  @include sur {
     display: none;
     right: 2%;
   }
@@ -76,7 +104,7 @@ body {
     padding-left: 12px;
     border-radius: 100em;
     position: relative;
-    @include ipone {
+    @include sur {
       width: 50px;
       height: 50px;
       padding: 16px 15px;
@@ -86,7 +114,7 @@ body {
       color: #000000;
       font-size: 30px;
       z-index: 500;
-      @include ipone {
+      @include sur {
         font-size: 30px;
       }
     }
@@ -99,7 +127,7 @@ body {
       top: 6px;
       right: 10px;
       font-size: 6px;
-      @include ipone {
+      @include sur {
         font-size: 8px;
         padding: 3px 8px;
         padding: 1px 6px;
@@ -121,7 +149,7 @@ body {
   top: 0;
   cursor: pointer;
   z-index: 100;
-  @include ipone {
+  @include sur {
     display: block;
     right: 2%;
   }
@@ -133,7 +161,7 @@ body {
     padding-left: 12px;
     border-radius: 100em;
     position: relative;
-    @include ipone {
+    @include sur {
       width: 50px;
       height: 50px;
       padding: 16px 15px;
@@ -143,7 +171,7 @@ body {
       font-size: 30px;
       z-index: 500;
       color: #000000;
-      @include ipone {
+      @include sur {
         font-size: 30px;
       }
     }
@@ -156,7 +184,7 @@ body {
       top: 6px;
       right: 10px;
       font-size: 6px;
-      @include ipone {
+      @include sur {
         font-size: 8px;
         padding: 3px 8px;
         padding: 1px 6px;
@@ -226,7 +254,7 @@ body {
     font-weight: bolder;
     font-size: 50px;
     line-height: 80px;
-    @include ipone {
+    @include sur {
       font-size: 30px;
       line-height: 50px;
     }
@@ -242,7 +270,7 @@ body {
     @include pro {
       top: 75%;
     }
-    @include ipone {
+    @include sur {
       left: 78.5%;
     }
   }
@@ -255,7 +283,7 @@ body {
     @include pro {
       top: 70%;
     }
-    @include ipone {
+    @include sur {
       right: 0;
     }
   }
@@ -274,7 +302,7 @@ body {
     font-weight: bold;
     padding-top: 10px;
     padding-bottom: 15px;
-    @include ipone {
+    @include sur {
       font-size: 38px;
       line-height: 24px;
       letter-spacing: 3px;
@@ -285,7 +313,7 @@ body {
     font-size: 30px;
     line-height: 60px;
     letter-spacing: 1px;
-    @include ipone {
+    @include sur {
       font-size: 17px;
       line-height: 34px;
     }
@@ -295,7 +323,7 @@ body {
     line-height: 50px;
     letter-spacing: 2px;
     padding-top: 20px;
-    @include ipone {
+    @include sur {
       padding-top: 20px;
       font-size: 18px;
       line-height: 34px;
@@ -306,7 +334,7 @@ body {
   background-color: #c7c7c7;
   padding-top: 65px;
   padding-bottom: 45px;
-  @include ipone {
+  @include sur {
     padding-top: 30px;
     padding-bottom: 20px;
   }
@@ -318,12 +346,15 @@ body {
     @include pad {
       padding-left: 20%;
     }
-    @include ipone {
-      padding-left: 0;
+    @include sur {
+      padding-left: 17%;
+    }
+    @include plus {
+      padding-left: 5%;
     }
   }
   p {
-    margin-left: 5%;
+    margin-left: 8%;
     letter-spacing: 3px;
     font-size: 28px;
     line-height: 50px;
@@ -333,7 +364,7 @@ body {
     @include pad {
       font-size: 20px;
     }
-    @include ipone {
+    @include sur {
       font-size: 14px;
       letter-spacing: 2px;
       line-height: 24px;
@@ -343,12 +374,12 @@ body {
     font-size: 30px;
     transform: rotate(20deg);
     vertical-align: top;
-    @include ipone {
+    @include sur {
       font-size: 16px;
     }
   }
   h4 {
-    margin-left: 5%;
+    margin-left: 8%;
     font-size: 30px;
     font-weight: bolder;
     line-height: 40px;
@@ -363,7 +394,7 @@ body {
       font-size: 34px;
       width: 17em;
     }
-    @include ipone {
+    @include sur {
       font-size: 16px;
       width: 20em;
     }
@@ -384,7 +415,7 @@ body {
 //閃現
 .jumbotron {
   background-color: #c8dae6;
-  @include ipone {
+  @include sur {
     letter-spacing: 0;
   }
   h2 {
@@ -393,10 +424,23 @@ body {
     font-weight: bolder;
     font-size: 50px;
     margin-left: 25%;
-    @include ipone {
-      margin-left: 1%;
+    @include pro {
+      margin-left: 18%;
+    }
+    @include pad {
+      margin-left: 11%;
+    }
+    @include sur {
+      margin-left: 10%;
       letter-spacing: 2px;
+      font-size: 36px;
+    }
+    @include plus {
+      margin-left: 5%;
       font-size: 28px;
+    }
+    @include iphone {
+      margin-left: 1%;
     }
   }
   .badge {
@@ -406,7 +450,7 @@ body {
     @include pro {
       top: -10px;
     }
-    @include ipone {
+    @include sur {
       top: -15px;
       margin-left: 4px;
     }
@@ -424,10 +468,16 @@ body {
       line-height: 24px;
       margin-left: 15%;
     }
-    @include ipone {
+    @include sur {
+      margin-left: 10%;
+    }
+    @include plus {
       letter-spacing: 1px;
       font-size: 16px;
       line-height: 18px;
+      margin-left: 5%;
+    }
+    @include iphone {
       margin-left: 3.5%;
     }
   }
@@ -437,13 +487,13 @@ body {
 .checkcart {
   p {
     font-size: 18px;
-    @include ipone {
+    @include sur {
       font-size: 14px;
     }
   }
   .trash {
     padding-top: 5px;
-    @include ipone {
+    @include sur {
       padding-top: 20px;
     }
   }
@@ -474,24 +524,24 @@ body {
 }
 .detail-card {
   margin-top: 16px;
-  @include ipone {
+  @include sur {
     margin-top: 6px;
   }
   .card {
     margin-top: 8px;
-    @include ipone {
+    @include sur {
       margin-top: 0;
     }
   }
   p {
     font-size: 18px;
     line-height: 20px;
-    @include ipone {
+    @include sur {
       line-height: 26px;
     }
   }
   h3 {
-    @include ipone {
+    @include sur {
       font-size: 24px;
     }
   }
@@ -502,7 +552,7 @@ body {
     color: #616161;
     font-size: 22px;
     font-weight: bold;
-    @include ipone {
+    @include sur {
       padding-top: 20px;
       font-size: 20px;
     }
@@ -513,14 +563,14 @@ body {
 .home-card {
   cursor: grab;
   margin-bottom: 24px;
-  @include ipone {
+  @include sur {
     margin-bottom: 6px;
   }
   .card {
     .image {
       height: 240px;
       background-size: cover;
-      @include ipone {
+      @include sur {
         height: 140px;
         background-position: center;
       }
@@ -548,16 +598,16 @@ body {
   // margin-left: 40px;
   margin-top: 20px;
   letter-spacing: 2px;
-  @include ipone {
+  @include sur {
     margin-left: 10px;
   }
   p {
-    @include ipone {
+    @include sur {
       font-size: 10px;
     }
   }
   h5 {
-    @include ipone {
+    @include sur {
       font-size: 14px;
     }
   }
@@ -569,7 +619,7 @@ body {
   right: 15px;
   width: 40px;
   height: 40px;
-  @include ipone {
+  @include sur {
     right: 20px;
   }
 }
