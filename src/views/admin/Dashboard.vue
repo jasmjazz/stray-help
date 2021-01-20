@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Navbar from './D_Layout/Navbar';
-import Sidebar from './D_Layout/Sidebar';
+import Navbar from '../../components/admin/Navbar';
+import Sidebar from '../../components/admin/Sidebar';
 import Alert from '../../components/AlertMessage';
 
 export default {

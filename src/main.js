@@ -17,6 +17,7 @@ import App from './App';
 import router from './router';
 import './bus';
 import currencyFilter from './filters/currency';
+import date from './filters/data';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
@@ -29,6 +30,7 @@ Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 localize('zh_TW', zhTW);
 Vue.filter('currency', currencyFilter);
+Vue.filter('date', date);
 
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);

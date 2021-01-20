@@ -67,6 +67,12 @@ export default new VueRouter({
           component: () => import('../views/admin/Products.vue'),
           meta: { requiresAuth: true }, // 需經過驗證
         },
+        {
+          path: 'orders',
+          name: 'Orders',
+          component: () => import('../views/admin/Orders.vue'),
+          meta: { requiresAuth: true }, // 需經過驗證
+        },
       ],
     },
   ],

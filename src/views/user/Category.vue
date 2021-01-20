@@ -161,6 +161,7 @@ export default {
       vm.$http.get(api).then((response) => {
         console.log(response);
         vm.singleProduct = response.data.product;
+        vm.num = 1;
         $('#detailModal').modal('show');
         vm.isLoading = false;
       });
@@ -241,7 +242,7 @@ export default {
 a {
   text-decoration: none;
 }
-.card:hover {
+.card-group .card:hover {
   box-shadow: 6px 6px 6px #757575;
 }
 .list-group-item {

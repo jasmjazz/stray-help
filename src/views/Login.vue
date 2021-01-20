@@ -62,19 +62,23 @@ export default {
 
 <style scoped>
 
-.box{
-  width: 500px;
-  height: 100vh;
+body {
+  position: relative;
+}
+.box {
+  width: 100%;
   margin: auto;
   position: relative;
 }
-.box6 .content{
-  width: 400px;
+.box6 .content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 400px;
+  top: 150px;
+  left: 40%;
+  transform: translateY(-20px);
 }
+
 h4 {
   text-align: center;
   margin-bottom: 20px;
