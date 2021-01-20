@@ -148,7 +148,6 @@ export default {
       const vm = this;
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
-        console.log(response.data);
         vm.allProducts = response.data.products.filter(item => item.is_enabled === 1);
         vm.products = response.data.products;
         vm.isLoading = false;
@@ -159,7 +158,6 @@ export default {
       const vm = this;
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
-        console.log(response);
         vm.singleProduct = response.data.product;
         vm.num = 1;
         $('#detailModal').modal('show');
@@ -200,7 +198,6 @@ export default {
       } else { // Yes
         // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
         const tempProduct = { ...vm.cart[cartIndex] };
-        console.log(tempProduct.qty, '123');
         if (tempProduct.qty + qty > 10) {
           vm.$bus.$emit('message: push', '同款糧食不得超過10組！', 'danger');
         } else {

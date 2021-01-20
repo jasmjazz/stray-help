@@ -234,7 +234,6 @@ export default {
       const vm = this;
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
@@ -264,7 +263,6 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           vm.status.fileUploading = false;
           vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
@@ -305,14 +303,12 @@ export default {
       const vm = this;
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product/${vm.tempProduct.id}`;
       vm.$http.delete(api).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           $('#deleteModal').modal('hide');
           vm.getProducts();
         } else {
           $('#deleteModal').modal('hide');
           vm.getProducts();
-          console.log('刪除失敗');
         }
       });
     },

@@ -149,7 +149,6 @@ export default {
       vm.getCart();
     },
     delCart(id) {
-      console.log(id);
       const vm = this;
       vm.cart.forEach((item, index) => {
         if (item.id === id) {

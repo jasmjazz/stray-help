@@ -130,7 +130,6 @@ export default {
       } else { // Yes
         // 使用cartIndex找到此品項在購物車中的位置，並將data放入tempProduct
         const tempProduct = { ...vm.cart[cartIndex] };
-        console.log(tempProduct.qty, '123');
         if (tempProduct.qty + qty > 10) {
           vm.$bus.$emit('message: push', '同款糧食不得超過10組！', 'danger');
         } else {
