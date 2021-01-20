@@ -1,6 +1,14 @@
-# vuewebpack
+# stray-help
 
-> A Vue.js project
+![image](https://github.com/jasmjazz/stray-help/blob/main/src/assets/demo.png)
+
+## Demo
+
+https://jasmjazz.github.io/stray-help/dist/#/
+
+## API
+https://github.com/hexschool/vue-course-api-wiki/wiki
+
 
 ## Build Setup
 
