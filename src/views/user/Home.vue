@@ -1,21 +1,91 @@
 <template>
   <div>
-    <loading :active.sync="isLoading" loader="dots"></loading>
     <Cart></Cart>
-    <!--content-->
-    <div class="container-fluid content">
-      <div class="row">
-        <div class="col-md-12 col-xl-6 content-left">
-          <h2 style="color: #ffffff">
-            公告
-          </h2>
+    <div class="container-fulid introduce">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <figure class="figure">
+              <img src="../../assets/image/img15.png"
+                class="figure-img img-fluid rounded" alt="image">
+            </figure>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <p>全省有許多流浪貓狗園區面臨缺糧的問題。<br/>
+              愛爸和愛媽給了流浪貓狗一個家，<br/>
+              除了讓牠們免於受苦、受餓，
+              也大幅減少了社會環境的問題。<br/>
+              隨著收容的數量急遽上升，<br/>
+              能力有限的愛爸愛媽需要你我的幫助。
+            </p>
+            <h4>『集食』給予最實質的幫助
+              <i class="fas fa-paw"></i>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fulid down">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 text">
+            <h4>給浪浪一個家</h4>
+            <p>有足夠的糧食，讓牠們免於安樂死，留住每一個小生命
+            </p>
+            <h4>至少讓牠們吃飽</h4>
+            <p>讓牠們有更多時間可以等待下一個家</p>
+            <h4>一同集食</h4>
+            <p>傳播愛心，為流浪貓狗發聲</p>
+            <router-link :to="{ name: 'About' }">
+              <button class="btn">
+                <i class="fas fa-chevron-right"></i>
+                關於我們
+              </button>
+            </router-link>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <figure class="figure">
+              <img src="../../assets/image/img17.png"
+                class="figure-img img-fluid rounded" alt="image">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fulid">
+      <div class="container question">
+        <h3 class="text-center">助糧 Q&A</h3>
+        <div class="row mt-5">
+          <div class="col-md-4 col-sm-12">
+            <h4>1、物資會捐助到哪個園區呢？</h4>
+            <p>全省皆有配合的流浪貓狗園區，<br/>
+              為了避免過度集中捐贈，物資由平台平均分配<br/>
+              以最缺糧的園區優先配送。</p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <h4>2、捐助後多久會送到園區呢？</h4>
+            <p>平台7-15個工作天內配送完成，<br/>
+              因氣候有所影響，園區有些在山上及偏遠地區<br/>
+              可加入 LINE@ 詢問小幫手進度。</p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <h4>3、如何證明園區有收到物資呢？</h4>
+            <p>園區收到物資後會親自簽收，<br/>
+              可加入 LINE@ 索取園區簽收單。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fulid warm">
+      <div class="container">
+        <div class="col-md-12 content-left">
           <h5 style="color: #ffc107">
             <i class="fas fa-exclamation-triangle"></i>
             165防詐騙宣導<br/>
             提醒您提高警覺，疑似詐騙請撥打165求證
           </h5>
           <h5 style="color: #f5f5f5">
-            ※若需簽收單者，請於 LINE@ 或 FB 洽詢<br/>
+            ※若需簽收單，請加入 LINE@ 或於 FB 洽詢<br/>
             ※若需報稅者，請與我們聯繫
           </h5>
           <h4>
@@ -23,58 +93,10 @@
             <span style="color: red">立即愛心捐糧</span>
           </h4>
         </div>
-        <div class="col-md-12 col-xl-6 content-right">
-          <div class="card border-0">
-            <div class="card-body">
-              <p>全省有許多流浪貓狗園區面臨缺糧的問題，<br/>
-                愛爸和愛媽給了流浪貓狗一個家，<br/>
-                除了讓牠們免於受苦、受餓，<br/>
-                也大幅減少了社會環境的問題。<br/>
-                隨著收容的數量急遽上升，<br/>
-                能力有限的愛爸愛媽需要你我的幫助。
-              </p>
-              <h4 class="mt-4">『集食』給予最實質的幫助
-                <i class="fas fa-paw"></i>
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-      <!--iframe-->
-    <div class="wrap">
-      <div class="container-fulid">
-        <div class="iframe">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item"
-              src="https://www.youtube.com/embed/l9itdKFvMz4?rel=0"
-              allow="autoplay; encrypted-media" allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-        <img src="../../assets/image/img01.png" class="img-fluid" alt="Responsive image">
-        <img src="../../assets/image/img03.gif" class="img-fluid" alt="Responsive image">
-        <img src="../../assets/image/img02.png" class="img-fluid" alt="Responsive image">
-      </div>
-      <!--Message-->
-      <div class="container-fulid">
-      <div class="jumbotron">
-        <div class="container">
-          <h2 class="display-4">流浪貓狗助糧平台
-            <span class="badge badge-warning tag-2">宗旨</span>
-          </h2>
-          <hr class="my-4 mb-5">
-          <p>1. 捐糧，不捐款。</p>
-          <p>2. 以全台灣急缺糧食的園區優先配送。</p>
-          <p>3. 物資皆由平台平均分配。</p>
-          <p>4. 助糧流程公開透明，讓愛直達園區。</p>
-          <p>5. 領養不棄養！</p>
-        </div>
-      </div>
       </div>
     </div>
     <!--ProductList-->
-    <div class="container">
+    <div class="container mt-2">
       <div class="row">
         <div class="card-group col-md-6 col-lg-4 home-card"
           v-for="item in allProducts.slice(firstProduct, firstProduct + countProduct)"
@@ -133,7 +155,7 @@ export default {
       allProducts: [],
       product: {},
       pagination: {},
-      countProduct: 6,
+      countProduct: 3,
       currentPage: 1,
       cart: [],
     };
@@ -222,29 +244,72 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a {
   text-decoration: none;
 }
 
-@keyframes blink-smooth {
-  to{
-    color: transparent;
-  }
-}
-@keyframes blink {
-  50%{
-    color: transparent;
-  }
-}
-.tag {
-  animation: 1s blink-smooth 6 alternate;
-  animation-iteration-count: infinite;
-}
-.tag-2 {
-  animation: 1s blink 3 steps(1);
-  animation-iteration-count: infinite;
+
+.warm {
+  padding: 30px 0 50px 0;
 }
 
+
+.introduce {
+  padding: 100px 0 100px 0;
+}
+.introduce p {
+  padding-top: 20px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  line-height: 40px;
+}
+.introduce h4 {
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.down {
+  padding: 100px 0 100px 0;
+  background-color: #ffffff;
+}
+.down .text {
+  padding-top: 5px;
+  padding-left: 30px;
+}
+.down h4 {
+  color: #09233b;
+  font-weight: bold;
+}
+.down p {
+  letter-spacing: 2px;
+  font-size: 18px;
+  line-height: 32px;
+  padding-top: 5px;
+}
+.down .btn {
+  width: 50%;
+  letter-spacing: 2px;
+  margin-top: 10px;
+  background-color:  #09233b;
+  color: #ffffff;
+}
+.down .btn:hover {
+  background-color:#ffc107;
+}
+
+.alert {
+  background-color: #f5f5dc;
+}
+
+.question {
+  padding: 100px 0 60px 15px;
+}
+.question p {
+  font-size: 17px;
+  line-height: 32px;
+}
 </style>

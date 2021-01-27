@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light">
       <a>
         <router-link :to="{ name: 'Home' }">
         <img src="../../assets/icon/logo.svg"
@@ -13,7 +13,7 @@
       data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../../assets/carousel/carousel04.png" class="d-block w-100 gray"
+          <img src="../../assets/carousel/carousel04.png" class="d-block w-100"
           style="opacity: 0.9" alt="carousel-img">
           <div class="carousel-box">
             <div class="carousel-caption d-md-block carousel-first">
@@ -23,8 +23,8 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../../assets/carousel/carousel06.png" class="d-block w-100 gray"
-            style="opacity: 0.9" alt="carousel-img">
+          <img src="../../assets/carousel/carousel09.png" class="d-block w-100"
+            alt="carousel-img">
           <div class="carousel-box">
             <div class="carousel-caption d-md-block carousel-second">
               <p>對牠來說，<br/>
@@ -53,12 +53,18 @@ export default {
 a {
   text-decoration: none;
 }
+.about {
+  position: absolute;
+  margin: auto;
+  top: 30%;
+  right: 6%;
+}
 .gray {
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: grayscale(100%);
-  filter: gray;
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+-ms-filter: grayscale(100%);
+-o-filter: grayscale(100%);
+filter: grayscale(100%);
+filter: gray;
 }
 </style>

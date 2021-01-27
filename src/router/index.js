@@ -21,6 +21,11 @@ export default new VueRouter({
           component: () => import('../views/user/Home.vue'),
         },
         {
+          path: 'about',
+          name: 'About',
+          component: () => import('../views/user/About.vue'),
+        },
+        {
           path: 'category',
           name: 'Category',
           component: () => import('../views/user/Category.vue'),
