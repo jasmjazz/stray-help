@@ -1,7 +1,5 @@
 # stray-help
 
-![image](https://github.com/jasmjazz/stray-help/blob/main/src/assets/demo.png)
-
 ## Demo
 
 https://jasmjazz.github.io/stray-help/dist/#/
