@@ -4,13 +4,13 @@
     <div class="container-fulid introduce">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+          <div class="col-lg-6 col-md-12">
             <figure class="figure">
               <img src="../../assets/image/img15.png"
                 class="figure-img img-fluid rounded" alt="image">
             </figure>
           </div>
-          <div class="col-md-6 col-sm-12">
+          <div class="col-lg-6 col-md-12">
             <p>全省有許多流浪貓狗園區面臨缺糧的問題。<br/>
               愛爸和愛媽給了流浪貓狗一個家，<br/>
               除了讓牠們免於受苦、受餓，
@@ -25,17 +25,15 @@
         </div>
       </div>
     </div>
-    <div class="container-fulid down">
+    <div class="container-fulid about">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 col-sm-12 text">
+          <div class="col-lg-6 col-md-12 text">
             <h4>給浪浪一個家</h4>
             <p>有足夠的糧食，讓牠們免於安樂死，留住每一個小生命
             </p>
             <h4>至少讓牠們吃飽</h4>
             <p>讓牠們有更多時間可以等待下一個家</p>
-            <h4>一同集食</h4>
-            <p>傳播愛心，為流浪貓狗發聲</p>
             <router-link :to="{ name: 'About' }">
               <button class="btn">
                 <i class="fas fa-chevron-right"></i>
@@ -43,7 +41,7 @@
               </button>
             </router-link>
           </div>
-          <div class="col-md-6 col-sm-12">
+          <div class="col-lg-6 col-md-12">
             <figure class="figure">
               <img src="../../assets/image/img17.png"
                 class="figure-img img-fluid rounded" alt="image">
@@ -78,7 +76,7 @@
     </div>
     <div class="container-fulid warm">
       <div class="container">
-        <div class="col-md-12 content-left">
+        <div class="col-md-12 content">
           <h5 style="color: #ffc107">
             <i class="fas fa-exclamation-triangle"></i>
             165防詐騙宣導<br/>
@@ -247,69 +245,5 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
-}
-
-
-.warm {
-  padding: 30px 0 50px 0;
-}
-
-
-.introduce {
-  padding: 100px 0 100px 0;
-}
-.introduce p {
-  padding-top: 20px;
-  letter-spacing: 1px;
-  font-size: 18px;
-  line-height: 40px;
-}
-.introduce h4 {
-  font-size: 24px;
-  line-height: 40px;
-  letter-spacing: 2px;
-  font-weight: bold;
-  padding-top: 5px;
-}
-
-.down {
-  padding: 100px 0 100px 0;
-  background-color: #ffffff;
-}
-.down .text {
-  padding-top: 5px;
-  padding-left: 30px;
-}
-.down h4 {
-  color: #09233b;
-  font-weight: bold;
-}
-.down p {
-  letter-spacing: 2px;
-  font-size: 18px;
-  line-height: 32px;
-  padding-top: 5px;
-}
-.down .btn {
-  width: 50%;
-  letter-spacing: 2px;
-  margin-top: 10px;
-  background-color:  #09233b;
-  color: #ffffff;
-}
-.down .btn:hover {
-  background-color:#ffc107;
-}
-
-.alert {
-  background-color: #f5f5dc;
-}
-
-.question {
-  padding: 100px 0 60px 15px;
-}
-.question p {
-  font-size: 17px;
-  line-height: 32px;
 }
 </style>

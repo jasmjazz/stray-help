@@ -85,6 +85,124 @@ body {
   }
 }
 
+.warm {
+  padding: 30px 0 50px 0;
+  .content {
+    background-color: #373737;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    border-radius: 10px;
+    h5 {
+      font-size: 24px;
+      line-height: 48px;
+      letter-spacing: 1px;
+      @include sur {
+        font-size: 17px;
+        line-height: 34px;
+      }
+    }
+    h4 {
+      font-size: 30px;
+      line-height: 52px;
+      letter-spacing: 2px;
+      padding-top: 20px;
+      @include sur {
+        padding-top: 20px;
+        font-size: 18px;
+        line-height: 34px;
+      }
+    }
+  }
+}
+
+.introduce {
+  padding: 100px 0 100px 0;
+  p {
+    padding-top: 20px;
+    letter-spacing: 1px;
+    font-size: 18px;
+    line-height: 40px;
+    @include pro {
+      padding-top: 0;
+    }
+  }
+  i {
+    font-size: 24px;
+    transform: rotate(20deg);
+    vertical-align: top;
+    @include sur {
+      font-size: 16px;
+    }
+  }
+  h4 {
+    font-size: 24px;
+    font-weight: bolder;
+    line-height: 34px;
+    letter-spacing: 5px;
+    width: 18em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.06em solid;
+    animation: typing 5s steps(15) infinite, caret 1s steps(1) infinite;
+  }
+  /*打字機效果*/
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+  @keyframes caret {
+    50% {
+      border-right-color: transparent;
+    }
+  }
+}
+
+.about {
+  padding: 100px 0 100px 0;
+  background-color: #ffffff;
+  .text {
+    padding-top: 40px;
+    padding-left: 30px;
+    @include pro {
+      padding-top: 20px;
+    }
+  }
+  h4 {
+    color: #09233b;
+    font-weight: bold;
+  }
+  p {
+    letter-spacing: 2px;
+    font-size: 18px;
+    line-height: 32px;
+    padding-top: 5px;
+  }
+  .btn {
+    width: 50%;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    background-color: #09233b;
+    color: #ffffff;
+  }
+  .btn:hover {
+    background-color: #ffc107;
+  }
+}
+
+.alert {
+  background-color: #f5f5dc;
+}
+
+.question {
+  padding: 100px 0 60px 15px;
+  p {
+    font-size: 17px;
+    line-height: 32px;
+  }
+}
+
 // Cart
 .desk-cart {
   position: fixed;
@@ -225,8 +343,6 @@ body {
   transform: translateX(0px);
 }
 
-//
-
 // Carousel
 .carousel {
   position: relative;
@@ -265,12 +381,6 @@ body {
     left: 5%;
     width: 100%;
     text-align: left;
-    @include pro {
-      top: 75%;
-    }
-    @include sur {
-      left: 78.5%;
-    }
   }
   .carousel-second {
     position: absolute;
@@ -278,178 +388,6 @@ body {
     top: 20%;
     left: 5%;
     text-align: left;
-    @include pro {
-      top: 70%;
-    }
-    @include sur {
-      right: 0;
-    }
-  }
-}
-
-// content
-.content-left {
-  background-color: #373737;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  border-radius: 10px;
-  h5 {
-    font-size: 24px;
-    line-height: 48px;
-    letter-spacing: 1px;
-    @include sur {
-      font-size: 17px;
-      line-height: 34px;
-    }
-  }
-  h4 {
-    font-size: 30px;
-    line-height: 52px;
-    letter-spacing: 2px;
-    padding-top: 20px;
-    @include sur {
-      padding-top: 20px;
-      font-size: 18px;
-      line-height: 34px;
-    }
-  }
-}
-.content-right {
-  background-color: #f5f5f5;
-  padding-top: 65px;
-  padding-bottom: 65px;
-  @include sur {
-    margin-top: 30px;
-    margin-bottom: 20px;
-  }
-  p {
-    letter-spacing: 3px;
-    font-size: 28px;
-    line-height: 50px;
-    padding-left: 20%;
-    @include pro {
-      padding-left: 0%;
-    }
-    @include pad {
-      font-size: 20px;
-    }
-    @include sur {
-      font-size: 14px;
-      letter-spacing: 2px;
-      line-height: 24px;
-    }
-  }
-  i {
-    font-size: 30px;
-    transform: rotate(20deg);
-    vertical-align: top;
-    @include sur {
-      font-size: 16px;
-    }
-  }
-  h4 {
-    margin-left: 20%;
-    font-size: 30px;
-    font-weight: bolder;
-    line-height: 40px;
-    letter-spacing: 5px;
-    width: 17.5em;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 0.06em solid;
-    animation: typing 5s steps(15) infinite, caret 1s steps(1) infinite;
-    @include pro {
-      margin-left: 0;
-      font-size: 34px;
-      width: 17em;
-    }
-    @include sur {
-      font-size: 16px;
-      width: 20em;
-    }
-  }
-  /*打字機效果*/
-  @keyframes typing {
-    from {
-      width: 0;
-    }
-  }
-  @keyframes caret {
-    50% {
-      border-right-color: transparent;
-    }
-  }
-}
-
-//閃現
-.news {
-  background-color: #c8dae6;
-  @include sur {
-    letter-spacing: 0;
-  }
-  h2 {
-    letter-spacing: 3px;
-    position: relative;
-    font-weight: bolder;
-    font-size: 50px;
-    margin-left: 24%;
-    @include pro {
-      margin-left: 18%;
-    }
-    @include pad {
-      margin-left: 11%;
-    }
-    @include sur {
-      margin-left: 10%;
-      letter-spacing: 2px;
-      font-size: 36px;
-    }
-    @include plus {
-      margin-left: 5%;
-      font-size: 28px;
-    }
-    @include iphone {
-      margin-left: 1%;
-    }
-  }
-  .badge {
-    position: absolute;
-    top: -20px;
-    margin-left: 10px;
-    @include pro {
-      top: -10px;
-    }
-    @include sur {
-      top: -15px;
-      margin-left: 4px;
-    }
-  }
-  p {
-    font-size: 30px;
-    line-height: 45px;
-    letter-spacing: 5px;
-    margin-left: 24%;
-    @include pro {
-      margin-left: 18%;
-    }
-    @include pad {
-      font-size: 18px;
-      line-height: 24px;
-      margin-left: 15%;
-    }
-    @include sur {
-      margin-left: 10%;
-    }
-    @include plus {
-      letter-spacing: 1px;
-      font-size: 16px;
-      line-height: 18px;
-      margin-left: 5%;
-    }
-    @include iphone {
-      margin-left: 3.5%;
-    }
   }
 }
 
@@ -515,8 +453,6 @@ body {
       font-size: 24px;
     }
   }
-  p {
-  }
   .price {
     padding-top: 40px;
     color: #616161;
@@ -560,12 +496,10 @@ body {
 
 // Footer
 .footer {
-  // background-color: #e0e0e0;
   font-family: Papyrus;
   font-weight: bolder;
 }
 .footer-text {
-  // margin-left: 40px;
   margin-top: 20px;
   letter-spacing: 2px;
   @include sur {
@@ -596,8 +530,3 @@ body {
 .footer .fb {
   margin-right: 50px;
 }
-
-// // category & detail
-// .nav-item .choose:hover {
-//   text-decoration: underline #bdbdbb;
-// }
