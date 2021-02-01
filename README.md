@@ -1,7 +1,5 @@
 # stray-help
 
-![image](https://github.com/jasmjazz/stray-help/blob/main/src/assets/demo.png)
-
 ## Demo
 
 https://jasmjazz.github.io/stray-help/dist/#/
@@ -11,7 +9,6 @@ https://github.com/hexschool/vue-course-api-wiki/wiki
 
 ## 聲明
 * 圖片來源：[Pexels](https://www.pexels.com/zh-tw/ "link")、[自然食](https://www.natural10.com.tw/pages/jerky-for-dog-and-cat?gclid=CjwKCAiAxp-ABhALEiwAXm6IyXR-8mJ2HuLYCSlpPwB6pkDBW5ZexlyebdnqE_Rcnx2_r85H0njzdRoCrJMQAvD_BwE "link")  
-* 影片來源：[財團法人流浪動物之家基金會 x CHECK2CHECK](https://www.youtube.com/watch?v=l9itdKFvMz4&feature=emb_title "link")  
 * 本作品僅作為個人練習之用，無任何商業用途。
 ## Build Setup
 
